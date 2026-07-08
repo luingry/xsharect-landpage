@@ -1,0 +1,67 @@
+.section {
+  padding-block: var(--section-py);
+}
+
+.showcase-intro {
+  text-align: center;
+  max-width: 42rem;
+  margin-inline: auto;
+}
+
+.showcase-intro .section-lead {
+  margin-inline: auto;
+}
+
+.showcase-frames {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  margin: 2.5rem 0 3.5rem;
+  align-items: end;
+  justify-items: center;
+}
+
+@media (min-width: 900px) {
+  .showcase-frames {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: clamp(1rem, 2vw, 1.5rem);
+    align-items: end;
+  }
+
+  .showcase-frames > :first-child {
+    grid-column: span 5;
+  }
+
+  .showcase-frames > :last-child {
+    grid-column: span 7;
+  }
+}
+
+.showcase-grid {
+  display: contents;
+}
+
+.showcase-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 9.5rem;
+  padding: 1.5rem;
+  border-radius: 18px;
+  background: var(--surface);
+  border: 1px solid var(--outline);
+}
+
+.showcase-card-title {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.showcase-card-body {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+}

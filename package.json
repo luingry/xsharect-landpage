@@ -1,0 +1,30 @@
+{
+  "name": "xsharect-landpage",
+  "private": true,
+  "version": "1.4.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "smoke": "node scripts/smoke.mjs",
+    "capture:screens": "node scripts/capture-marketing-screens.mjs",
+    "capture:demo": "node scripts/capture-demo-frames.mjs",
+    "demo:render": "npm run render --prefix remotion",
+    "viewer:render": "npm run render:viewer-tabs --prefix remotion"
+  },
+  "dependencies": {
+    "@fontsource-variable/outfit": "^5.2.5",
+    "framer-motion": "^12.4.7",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "playwright": "^1.61.1",
+    "typescript": "~5.7.2",
+    "vite": "^6.2.0"
+  }
+}

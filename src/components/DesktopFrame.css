@@ -1,0 +1,92 @@
+.desktop-frame {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.desktop-shell {
+  width: 100%;
+  max-width: 520px;
+}
+
+.desktop-chrome {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  background: var(--surface-2);
+  border: 1px solid var(--outline);
+  border-bottom: none;
+  border-radius: 12px 12px 0 0;
+}
+
+.desktop-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--surface-3);
+}
+
+.desktop-dot:first-child {
+  background: #c15f3c;
+  opacity: 0.7;
+}
+
+.desktop-url {
+  margin-left: auto;
+  font-size: 0.6875rem;
+  color: var(--text-muted);
+  font-family: ui-monospace, monospace;
+}
+
+.desktop-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--outline);
+  border-top: none;
+  background: var(--bg);
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  padding: 6px;
+}
+
+.desktop-screen img,
+.desktop-screen video,
+.desktop-screen-media {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center top;
+  border-radius: 4px;
+}
+
+.desktop-stand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.desktop-neck {
+  width: 80px;
+  height: 28px;
+  background: linear-gradient(180deg, var(--surface-3), var(--surface-2));
+  clip-path: polygon(20% 0, 80% 0, 100% 100%, 0 100%);
+}
+
+.desktop-base {
+  width: 140px;
+  height: 8px;
+  border-radius: 0 0 8px 8px;
+  background: var(--surface-3);
+}
+
+.desktop-caption {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-align: center;
+}
