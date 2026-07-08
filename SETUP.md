@@ -34,9 +34,12 @@ git push -u origin develop
 
 ## 3. GitHub Pages
 
-Settings → Pages → Build and deployment → **GitHub Actions**
+Settings → Pages → Build and deployment → **Deploy from a branch**
 
-O workflow `release-web.yml` habilita Pages automaticamente (se ainda não estiver) e publica em `https://luingry.github.io/xsharect-landpage/` após push na `main`.
+- Branch: **`gh-pages`**
+- Folder: **`/ (root)`**
+
+O workflow `release-web.yml` publica o build na branch `gh-pages`. URL: `https://luingry.github.io/xsharect-landpage/`
 
 ## Import via bundle (alternativa)
 
