@@ -1,0 +1,83 @@
+name: Release (web)
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  pull-requests: read
+
+concurrency:
+  group: release-web-${{ github.event_name == 'push' && github.sha || format('pr-{0}', github.event.pull_request.number) }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.event.pull_request.merged == true &&
+      github.event.pull_request.head.ref == 'develop' &&
+      contains(github.event.pull_request.title, '(web)')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate commit messages contain (web)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          set -euo pipefail
+          missing=0
+          while IFS= read -r headline; do
+            if [[ "$headline" != *"(web)"* ]]; then
+              echo "::error::Commit message must contain (web): ${headline}"
+              missing=1
+            fi
+          done < <(
+            gh api "repos/${GITHUB_REPOSITORY}/pulls/${PR_NUMBER}/commits" \
+              --jq '.[].commit.message | split("\n")[0]'
+          )
+          if [ "$missing" -ne 0 ]; then
+            exit 1
+          fi
+
+  build:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci || npm install
+
+      - name: Build site
+        run: npm run build
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
