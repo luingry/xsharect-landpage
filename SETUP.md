@@ -36,7 +36,7 @@ git push -u origin develop
 
 Settings → Pages → Build and deployment → **GitHub Actions**
 
-O workflow `release-web.yml` publica em `https://luingry.github.io/xsharect-landpage/` após push na `main`.
+O workflow `release-web.yml` habilita Pages automaticamente (se ainda não estiver) e publica em `https://luingry.github.io/xsharect-landpage/` após push na `main`.
 
 ## Import via bundle (alternativa)
 
