@@ -46,29 +46,15 @@ jobs:
             exit 1
           fi
 
-  setup-pages:
-    if: github.event_name == 'push'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Ensure GitHub Pages uses Actions
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          set -euo pipefail
-          if ! gh api "repos/${GITHUB_REPOSITORY}/pages" >/dev/null 2>&1; then
-            gh api -X POST "repos/${GITHUB_REPOSITORY}/pages" -f build_type=workflow
-            echo "Enabled GitHub Pages with GitHub Actions source"
-          else
-            echo "GitHub Pages already configured"
-          fi
-
   build:
-    needs: setup-pages
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout main
         uses: actions/checkout@v4
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
 
       - uses: actions/setup-node@v4
         with:
