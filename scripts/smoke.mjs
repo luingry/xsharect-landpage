@@ -38,6 +38,26 @@ if (!indexHtml.includes('/xsharect-landpage/')) {
   failed = true;
 }
 
+const assetsDir = path.join(DIST, 'assets');
+if (fs.existsSync(assetsDir)) {
+  let hasApkLookup = false;
+  for (const file of fs.readdirSync(assetsDir)) {
+    if (!file.endsWith('.js')) continue;
+    const bundle = fs.readFileSync(path.join(assetsDir, file), 'utf8');
+    if (bundle.includes('api.github.com/repos/luingry/xsharect/releases')) {
+      console.error(`FAIL: ${file} still references private GitHub releases API`);
+      failed = true;
+    }
+    if (bundle.includes('apk/latest.json')) {
+      hasApkLookup = true;
+    }
+  }
+  if (!hasApkLookup) {
+    console.error('FAIL: built bundles missing public apk/latest.json lookup');
+    failed = true;
+  }
+}
+
 if (fs.existsSync(SCREENS)) {
   for (const f of fs.readdirSync(SCREENS)) {
     if (f.endsWith('.png') && fs.statSync(path.join(SCREENS, f)).size < 1000) {

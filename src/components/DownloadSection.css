@@ -78,6 +78,30 @@
   font-size: 0.875rem;
 }
 
+.download-secondary summary {
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  text-align: center;
+  list-style: none;
+}
+
+.download-secondary summary::-webkit-details-marker {
+  display: none;
+}
+
+.download-notes {
+  margin-top: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--outline);
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
 .download-skeleton {
   display: flex;
   flex-direction: column;

@@ -1,6 +1,5 @@
 import { Reveal } from './Reveal';
 import { useLatestRelease } from '../hooks/useLatestRelease';
-import { RELEASES_PAGE } from '../lib/release';
 import { AndroidLogo } from './AndroidLogo';
 import { DownloadIcon } from './DownloadIcon';
 import './DownloadSection.css';
@@ -8,7 +7,7 @@ import './DownloadSection.css';
 export function DownloadSection() {
   const { release, loading, error } = useLatestRelease();
 
-  const href = release?.downloadUrl ?? RELEASES_PAGE;
+  const href = release?.downloadUrl ?? `${import.meta.env.BASE_URL}apk/latest.json`;
 
   return (
     <section id="download" className="download section" aria-labelledby="download-title">
@@ -24,8 +23,8 @@ export function DownloadSection() {
                 Download externo
               </h2>
               <p className="section-lead download-lead">
-                O Xsharect é distribuído como APK assinado nas releases do GitHub.
-                Você instala manualmente no dispositivo — habilite
+                O Xsharect é distribuído como APK assinado. Baixe direto pelo botão
+                abaixo e instale manualmente no dispositivo — habilite
                 &quot;Fontes desconhecidas&quot; ou permita a instalação pelo navegador
                 quando solicitado.
               </p>
@@ -49,14 +48,13 @@ export function DownloadSection() {
                     className="btn-primary download-btn"
                     download={!error && release ? true : undefined}
                     rel="noopener noreferrer"
-                    target={error ? '_blank' : undefined}
                   >
                     <DownloadIcon />
                     <span>Download</span>
                   </a>
                   {error && (
                     <p className="download-fallback" role="status">
-                      Não foi possível resolver o link direto. Abrindo a página de releases.
+                      Não foi possível carregar a versão mais recente. Tente de novo em instantes.
                     </p>
                   )}
                   {!error && release?.version && (
@@ -66,14 +64,12 @@ export function DownloadSection() {
                   )}
                 </>
               )}
-              <a
-                href={RELEASES_PAGE}
-                className="btn-ghost download-secondary"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                Ver todas as releases
-              </a>
+              {release?.releaseNotes ? (
+                <details className="download-secondary">
+                  <summary>Notas da versão</summary>
+                  <div className="download-notes">{release.releaseNotes}</div>
+                </details>
+              ) : null}
             </div>
           </div>
         </Reveal>

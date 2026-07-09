@@ -1,7 +1,6 @@
-const GITHUB_API =
-  'https://api.github.com/repos/luingry/xsharect/releases/latest';
-const RELEASES_PAGE =
-  'https://github.com/luingry/xsharect/releases/latest';
+import seedLatest from '../../public/apk/latest.json';
+
+const LATEST_JSON_URL = `${import.meta.env.BASE_URL}apk/latest.json`;
 
 export type ReleaseInfo = {
   version: string;
@@ -10,36 +9,39 @@ export type ReleaseInfo = {
   fallback: boolean;
 };
 
-function pickApkAsset(assets: Array<{ name: string; browser_download_url: string }>) {
-  const named = assets.find((a) => a.name.endsWith('.apk'));
-  return named?.browser_download_url ?? null;
+type LatestJson = {
+  version_name?: string;
+  apk_download_url?: string;
+  release_notes?: string;
+};
+
+function fromLatestJson(data: LatestJson, fallback: boolean): ReleaseInfo {
+  const version = String(data.version_name ?? '').trim();
+  const downloadUrl = String(data.apk_download_url ?? '').trim();
+  if (!version || !downloadUrl) throw new Error('Invalid latest.json');
+  return {
+    version,
+    downloadUrl,
+    releaseNotes: String(data.release_notes ?? '').trim(),
+    fallback,
+  };
 }
 
 export async function fetchLatestRelease(): Promise<ReleaseInfo> {
   try {
-    const res = await fetch(GITHUB_API, {
-      headers: { Accept: 'application/vnd.github+json' },
-    });
+    const res = await fetch(LATEST_JSON_URL, { cache: 'no-store' });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
-    const tag = String(data.tag_name ?? '').replace(/^v/i, '');
-    const assets = Array.isArray(data.assets) ? data.assets : [];
-    const downloadUrl = pickApkAsset(assets);
-    if (!downloadUrl) throw new Error('No APK asset');
-    return {
-      version: tag,
-      downloadUrl,
-      releaseNotes: String(data.body ?? '').trim(),
-      fallback: false,
-    };
+    return fromLatestJson((await res.json()) as LatestJson, false);
   } catch {
-    return {
-      version: '',
-      downloadUrl: RELEASES_PAGE,
-      releaseNotes: '',
-      fallback: true,
-    };
+    try {
+      return fromLatestJson(seedLatest as LatestJson, true);
+    } catch {
+      return {
+        version: '',
+        downloadUrl: LATEST_JSON_URL,
+        releaseNotes: '',
+        fallback: true,
+      };
+    }
   }
 }
-
-export { RELEASES_PAGE };

@@ -22,13 +22,7 @@ export function Footer() {
             <GitHubLogo />
             Código-fonte
           </a>
-          <a
-            href="https://github.com/luingry/xsharect/releases/latest"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Releases
-          </a>
+          <a href="#download">Download</a>
         </nav>
         <p className="footer-copy">
           {year} — tráfego local, sem nuvem.
