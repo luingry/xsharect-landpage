@@ -59,15 +59,6 @@ export function Hero() {
                 </div>
                 <div className="hero-monitor-stand" aria-hidden="true" />
               </div>
-              <div className="hero-phone" aria-hidden="true">
-                <span className="hero-phone-speaker" />
-                <img
-                  src={`${base}screens/app-host.png`}
-                  alt=""
-                  width={390}
-                  height={844}
-                />
-              </div>
             </div>
           </div>
         </div>

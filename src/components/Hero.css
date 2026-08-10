@@ -207,37 +207,6 @@
   background: var(--surface-raised);
   clip-path: polygon(18% 0, 82% 0, 100% 100%, 0 100%);
 }
-.hero-phone {
-  position: absolute;
-  z-index: 2;
-  left: 17%;
-  top: 15%;
-  width: clamp(6.6rem, 19%, 10.2rem);
-  padding: 0.4rem 0.3rem 0.55rem;
-  overflow: hidden;
-  border: 1px solid var(--outline);
-  border-radius: 1.35rem;
-  background: var(--bg);
-  box-shadow: 0.6rem 0.85rem 0
-    color-mix(in oklch, var(--accent) 15%, transparent);
-  transform: rotate(4deg);
-}
-.hero-phone-speaker {
-  display: block;
-  width: 2.1rem;
-  height: 0.22rem;
-  margin: 0.08rem auto 0.35rem;
-  border-radius: 1rem;
-  background: var(--surface-raised);
-}
-.hero-phone img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 9 / 19.5;
-  object-fit: cover;
-  object-position: center top;
-  border-radius: 0.95rem;
-}
 @media (min-width: 900px) {
   .hero {
     min-height: 0;
@@ -263,11 +232,8 @@
   }
   .hero-monitor {
     top: 0;
-    width: 108%;
-  }
-  .hero-phone {
-    left: 16%;
-    top: 11%;
+    right: -8%;
+    width: 114%;
   }
   .hero-monitor-stand {
     width: 6rem;
@@ -276,11 +242,8 @@
 }
 @media (min-width: 1200px) {
   .hero-monitor {
-    right: -7%;
-    width: 112%;
-  }
-  .hero-phone {
-    width: 10.2rem;
+    right: -10%;
+    width: 118%;
   }
 }
 @media (max-width: 620px) {
@@ -288,13 +251,9 @@
     min-height: 17rem;
   }
   .hero-monitor {
-    right: -2%;
-    width: 101%;
-  }
-  .hero-phone {
-    left: 14%;
-    top: 14%;
-    width: 6.65rem;
+    right: -5%;
+    top: 0.5rem;
+    width: 108%;
   }
   .hero-monitor-chrome {
     height: 1.35rem;
