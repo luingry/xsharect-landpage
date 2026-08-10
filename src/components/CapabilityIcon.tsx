@@ -20,8 +20,8 @@ export function CapabilityIcon({ kind, className }: CapabilityIconProps) {
   if (kind === "stream")
     return (
       <svg {...common}>
-        <rect x="4" y="7" width="19" height="15" />
-        <path d="M10 17h7M12 14h3M26 9c3 3 3 11 0 14M23 12c1.5 1.5 1.5 6.5 0 8" />
+        <path d="M5 7h17v18H5z" />
+        <path d="m13 12 6 4-6 4zM26 8c3 4 3 12 0 16M23 11c1.5 2.5 1.5 7.5 0 10" />
       </svg>
     );
   if (kind === "control")
@@ -41,8 +41,7 @@ export function CapabilityIcon({ kind, className }: CapabilityIconProps) {
     );
   return (
     <svg {...common}>
-      <path d="M4 8h9l3 3h12v15H4z" />
-      <path d="M8 15h8v7H8zM19 16h5M19 20h5" />
+      <path d="M4 9h9l3 3h12v14H4z" />
     </svg>
   );
 }
