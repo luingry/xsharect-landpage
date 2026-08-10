@@ -2,31 +2,32 @@ import { useEffect, useRef } from "react";
 import { DesktopFrame } from "./DesktopFrame";
 import { DeviceFrame } from "./DeviceFrame";
 import { Reveal } from "./Reveal";
+import { CapabilityIcon, type CapabilityKind } from "./CapabilityIcon";
 import "./Showcase.css";
 
 const base = import.meta.env.BASE_URL;
 
-const readouts = [
-  [
-    "01",
-    "Transmissão contínua",
-    "Transmissão H.264 pela rede local, com baixa latência e reconexão automática.",
-  ],
-  [
-    "02",
-    "Controle remoto",
-    "Controle o Android por toques e pelos botões de navegação quando a permissão estiver ativa.",
-  ],
-  [
-    "03",
-    "Acesso protegido",
-    "Use uma senha opcional para proteger a sessão local quando necessário.",
-  ],
-  [
-    "04",
-    "Mídias e arquivos",
-    "Veja fotos e vídeos ou envie arquivos pelo próprio visualizador.",
-  ],
+const readouts: Array<{ kind: CapabilityKind; title: string; body: string }> = [
+  {
+    kind: "stream",
+    title: "Transmissão contínua",
+    body: "Transmissão H.264 pela rede local, com baixa latência e reconexão automática.",
+  },
+  {
+    kind: "control",
+    title: "Controle remoto",
+    body: "Controle o Android por toques e pelos botões de navegação quando a permissão estiver ativa.",
+  },
+  {
+    kind: "access",
+    title: "Acesso protegido",
+    body: "Use uma senha opcional para proteger a sessão local quando necessário.",
+  },
+  {
+    kind: "media",
+    title: "Mídias e arquivos",
+    body: "Veja fotos e vídeos ou envie arquivos pelo próprio visualizador.",
+  },
 ];
 
 export function Showcase() {
@@ -108,11 +109,6 @@ export function Showcase() {
             className="route-station route-station-lan"
             aria-label="Etapa LAN"
           >
-            <span className="lan-mark" aria-hidden="true">
-              <i />
-              <i />
-              <i />
-            </span>
             <p className="station-index">[ B ]</p>
             <h3>
               Rede local
@@ -122,7 +118,6 @@ export function Showcase() {
             <p>
               Digite o endereço em outro dispositivo conectado à mesma rede.
             </p>
-            <code>http://IP:9240</code>
           </aside>
           <article className="route-station route-station-browser">
             <p className="station-index">[ C ]</p>
@@ -147,16 +142,16 @@ export function Showcase() {
           <span>Capacidades na mesma sessão</span>
         </div>
         <dl className="route-readouts span-12">
-          {readouts.map(([number, title, body]) => (
+          {readouts.map(({ kind, title, body }) => (
             <Reveal
-              key={number}
-              className={`route-readout route-readout-${number}`}
+              key={kind}
+              className={`route-readout route-readout-${kind}`}
             >
               <span className="route-readout-mark" aria-hidden="true">
-                {number}
+                <CapabilityIcon kind={kind} />
               </span>
               <dt>
-                <span className="tap-number">{number}</span>
+                <CapabilityIcon className="tap-icon" kind={kind} />
                 <strong>{title}</strong>
               </dt>
               <dd>{body}</dd>

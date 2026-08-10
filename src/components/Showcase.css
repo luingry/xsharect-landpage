@@ -97,36 +97,6 @@
   padding: 1.5rem 0 1.55rem 2rem;
   border-block: 1px solid var(--outline);
 }
-.lan-mark {
-  display: flex;
-  gap: 0.32rem;
-  align-items: end;
-  height: 1.2rem;
-  margin-bottom: 1rem;
-}
-.lan-mark i {
-  display: block;
-  width: 0.34rem;
-  background: var(--accent);
-}
-.lan-mark i:nth-child(1) {
-  height: 0.42rem;
-}
-.lan-mark i:nth-child(2) {
-  height: 0.78rem;
-}
-.lan-mark i:nth-child(3) {
-  height: 1.15rem;
-}
-.route-station code {
-  display: inline-block;
-  margin-top: 1.2rem;
-  color: var(--accent);
-  font-family: var(--font);
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-}
 .readout-heading {
   margin-top: clamp(4.5rem, 10vw, 8rem);
   color: var(--text-faint);
@@ -156,12 +126,13 @@
   right: 0.15rem;
   z-index: 0;
   color: var(--accent);
-  font-family: var(--font-display);
-  font-size: clamp(3.5rem, 15vw, 5.2rem);
-  letter-spacing: -0.1em;
-  line-height: 0.8;
   opacity: 0.12;
   pointer-events: none;
+}
+.route-readout-mark svg {
+  display: block;
+  width: clamp(3.4rem, 15vw, 5.2rem);
+  height: auto;
 }
 .route-readout dt {
   display: grid;
@@ -170,13 +141,11 @@
   position: relative;
   z-index: 1;
 }
-.tap-number {
+.tap-icon {
   color: var(--accent);
-  font-family: var(--font-display);
-  font-size: clamp(1.65rem, 8vw, 2.3rem);
-  font-weight: 400;
-  line-height: 0.78;
-  letter-spacing: -0.07em;
+  width: 1.35rem;
+  height: 1.35rem;
+  flex: none;
 }
 .route-readout dt strong {
   font-size: 1rem;
@@ -257,16 +226,19 @@
   .route-readout-mark {
     top: -0.5rem;
     right: 0;
-    font-size: clamp(4.2rem, 7vw, 6.4rem);
     opacity: 0.1;
+  }
+  .route-readout-mark svg {
+    width: clamp(4rem, 7vw, 6.2rem);
   }
   .route-readout dt {
     display: flex;
     align-items: baseline;
     gap: 0.65rem;
   }
-  .tap-number {
-    font-size: clamp(2.3rem, 4vw, 3.6rem);
+  .tap-icon {
+    width: 1.6rem;
+    height: 1.6rem;
   }
   .route-readout dt strong {
     max-width: 8ch;
@@ -275,22 +247,22 @@
   .route-readout dd {
     margin-top: 0.7rem;
   }
-  .route-readout-01 {
+  .route-readout-stream {
     grid-column: 1 / span 3;
     grid-row: 1;
     align-self: end;
   }
-  .route-readout-02 {
+  .route-readout-control {
     grid-column: 4 / span 3;
     grid-row: 1;
     align-self: end;
   }
-  .route-readout-03 {
+  .route-readout-access {
     grid-column: 7 / span 3;
     grid-row: 1;
     align-self: end;
   }
-  .route-readout-04 {
+  .route-readout-media {
     grid-column: 10 / span 3;
     grid-row: 1;
     align-self: end;
@@ -333,14 +305,14 @@
       animation-timeline: view(block);
       animation-range: entry 8% exit 92%;
     }
-    .route-readout-01 .route-readout-mark,
-    .route-readout-03 .route-readout-mark {
+    .route-readout-stream .route-readout-mark,
+    .route-readout-access .route-readout-mark {
       animation: readout-mark-left linear both;
       animation-timeline: view(block);
       animation-range: entry 15% exit 88%;
     }
-    .route-readout-02 .route-readout-mark,
-    .route-readout-04 .route-readout-mark {
+    .route-readout-control .route-readout-mark,
+    .route-readout-media .route-readout-mark {
       animation: readout-mark-right linear both;
       animation-timeline: view(block);
       animation-range: entry 15% exit 88%;
@@ -429,12 +401,12 @@
     .route-station-browser {
       animation-name: station-far-mobile;
     }
-    .route-readout-01 .route-readout-mark,
-    .route-readout-03 .route-readout-mark {
+    .route-readout-stream .route-readout-mark,
+    .route-readout-access .route-readout-mark {
       animation-name: readout-mark-left-mobile;
     }
-    .route-readout-02 .route-readout-mark,
-    .route-readout-04 .route-readout-mark {
+    .route-readout-control .route-readout-mark,
+    .route-readout-media .route-readout-mark {
       animation-name: readout-mark-right-mobile;
     }
   }
