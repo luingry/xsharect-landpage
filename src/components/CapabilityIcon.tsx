@@ -20,8 +20,12 @@ export function CapabilityIcon({ kind, className }: CapabilityIconProps) {
   if (kind === "stream")
     return (
       <svg {...common}>
-        <path d="M5 7h17v18H5z" />
-        <path d="m13 12 6 4-6 4zM26 8c3 4 3 12 0 16M23 11c1.5 2.5 1.5 7.5 0 10" />
+        <circle cx="16" cy="16" r="2.5" fill="currentColor" stroke="none" />
+        <path d="M11 12c-2 2-2 6 0 8M21 12c2 2 2 6 0 8" strokeLinecap="round" />
+        <path
+          d="M7 8c-4 4-4 12 0 16M25 8c4 4 4 12 0 16"
+          strokeLinecap="round"
+        />
       </svg>
     );
   if (kind === "control")
