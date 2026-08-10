@@ -20,3 +20,10 @@
 - Root cause: Scroll-driven `readout-left` and `readout-right` keyframes applied fractional `translate3d` transforms to the same wrappers that render the capability text.
 - Solution: Moved readout parallax to a separate, low-opacity number marker inside each capability. Text wrappers and their `dt`/`dd` remain static while the decorative marker moves.
 - Guard: Do not apply scroll transforms to wrappers that render dense text; use a dedicated decorative layer for parallax.
+
+## Vercel deployment returned 404 for built assets (2026-08-10)
+
+- Symptom: The landing page deployed to Vercel returned 404s because the generated asset URLs included the GitHub Pages repository prefix.
+- Root cause: Vite used `/xsharect-landpage/` as its base for every environment, while a Vercel project is served from `/`.
+- Solution: Detect the Vercel build environment through `VERCEL` or `VERCEL_ENV` and set Vite's base to `/`; retain `/xsharect-landpage/` everywhere else for GitHub Pages.
+- Guard: When a Vite app serves from more than one host root, make the build base explicit per deployment environment and verify the generated asset paths.
