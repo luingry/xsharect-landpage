@@ -6,3 +6,10 @@
 - Root cause: `vite.config.ts` still declared a manual Rollup chunk for the removed dependency.
 - Solution: Removed the obsolete `motion` manual chunk along with the unused package.
 - Guard: When removing a bundled dependency, check Vite's `manualChunks` configuration as well as source imports.
+
+## Reveal fade completed instantly (2026-08-10)
+
+- Symptom: Scroll reveals received `is-visible`, but appeared at full opacity instead of fading over 600ms.
+- Root cause: The `transition` declaration lived only on `.reveal.is-ready:not(.is-visible)`. Adding `is-visible` removed that selector at the same style update, so the browser had no persisted transition to interpolate. Some readout parallax keyframes also owned opacity.
+- Solution: Moved the opacity/transform transition to persistent `.reveal.is-ready` and kept the hidden values on the narrower selector. Removed opacity from the readout parallax keyframes so reveal owns opacity while parallax owns transform.
+- Guard: When class state changes initiate a transition, declare the transition on a selector that remains matched after the class change; do not let scroll-parallax and reveal compete for the same property.

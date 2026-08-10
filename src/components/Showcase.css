@@ -97,15 +97,6 @@
   padding: 1.5rem 0 1.55rem 2rem;
   border-block: 1px solid var(--outline);
 }
-.route-station-lan::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 1.5rem;
-  bottom: 1.5rem;
-  width: 1px;
-  background: var(--accent);
-}
 .lan-mark {
   display: flex;
   gap: 0.32rem;
@@ -266,10 +257,6 @@
     margin-top: 0;
     padding: 2rem 0 2rem 1.5rem;
     border-block: 0;
-  }
-  .route-station-lan::before {
-    top: 0.2rem;
-    bottom: 0.2rem;
   }
   .route-station-browser {
     margin-top: 15.2rem;
@@ -478,21 +465,17 @@
 @keyframes readout-left {
   from {
     transform: translate3d(-12px, 16px, 0);
-    opacity: 0.72;
   }
   to {
     transform: translate3d(12px, -16px, 0);
-    opacity: 1;
   }
 }
 @keyframes readout-right {
   from {
     transform: translate3d(12px, 12px, 0);
-    opacity: 0.72;
   }
   to {
     transform: translate3d(-12px, -12px, 0);
-    opacity: 1;
   }
 }
 @media (max-width: 759px) and (prefers-reduced-motion: no-preference) {
@@ -546,20 +529,16 @@
 @keyframes readout-left-mobile {
   from {
     transform: translate3d(-5px, 8px, 0);
-    opacity: 0.8;
   }
   to {
     transform: translate3d(5px, -8px, 0);
-    opacity: 1;
   }
 }
 @keyframes readout-right-mobile {
   from {
     transform: translate3d(5px, 8px, 0);
-    opacity: 0.8;
   }
   to {
     transform: translate3d(-5px, -8px, 0);
-    opacity: 1;
   }
 }
