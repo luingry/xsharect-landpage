@@ -13,3 +13,10 @@
 - Root cause: The `transition` declaration lived only on `.reveal.is-ready:not(.is-visible)`. Adding `is-visible` removed that selector at the same style update, so the browser had no persisted transition to interpolate. Some readout parallax keyframes also owned opacity.
 - Solution: Moved the opacity/transform transition to persistent `.reveal.is-ready` and kept the hidden values on the narrower selector. Removed opacity from the readout parallax keyframes so reveal owns opacity while parallax owns transform.
 - Guard: When class state changes initiate a transition, declare the transition on a selector that remains matched after the class change; do not let scroll-parallax and reveal compete for the same property.
+
+## Capability text blurred during scroll (2026-08-10)
+
+- Symptom: Text in "Capacidades na mesma sessão" looked blurred while scrolling.
+- Root cause: Scroll-driven `readout-left` and `readout-right` keyframes applied fractional `translate3d` transforms to the same wrappers that render the capability text.
+- Solution: Removed readout parallax animations and their mobile variants. The text wrappers stay static while the section backgrounds and route stations retain their parallax.
+- Guard: Do not apply scroll transforms to wrappers that render dense text; reserve parallax for decorative layers or visual media.

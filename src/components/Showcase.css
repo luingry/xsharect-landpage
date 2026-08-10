@@ -310,18 +310,6 @@
       animation-timeline: view(block);
       animation-range: entry 8% exit 92%;
     }
-    .route-readout-01,
-    .route-readout-03 {
-      animation: readout-left linear both;
-      animation-timeline: view(block);
-      animation-range: entry 15% exit 88%;
-    }
-    .route-readout-02,
-    .route-readout-04 {
-      animation: readout-right linear both;
-      animation-timeline: view(block);
-      animation-range: entry 15% exit 88%;
-    }
   }
 }
 @keyframes technical-arc {
@@ -376,22 +364,6 @@
     transform: translate3d(0, 18px, 0);
   }
 }
-@keyframes readout-left {
-  from {
-    transform: translate3d(-12px, 16px, 0);
-  }
-  to {
-    transform: translate3d(12px, -16px, 0);
-  }
-}
-@keyframes readout-right {
-  from {
-    transform: translate3d(12px, 12px, 0);
-  }
-  to {
-    transform: translate3d(-12px, -12px, 0);
-  }
-}
 @media (max-width: 759px) and (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: view()) {
     .showcase::after {
@@ -405,14 +377,6 @@
     }
     .route-station-browser {
       animation-name: station-far-mobile;
-    }
-    .route-readout-01,
-    .route-readout-03 {
-      animation-name: readout-left-mobile;
-    }
-    .route-readout-02,
-    .route-readout-04 {
-      animation-name: readout-right-mobile;
     }
   }
 }
@@ -438,21 +402,5 @@
   }
   to {
     transform: translate3d(0, 8px, 0);
-  }
-}
-@keyframes readout-left-mobile {
-  from {
-    transform: translate3d(-5px, 8px, 0);
-  }
-  to {
-    transform: translate3d(5px, -8px, 0);
-  }
-}
-@keyframes readout-right-mobile {
-  from {
-    transform: translate3d(5px, 8px, 0);
-  }
-  to {
-    transform: translate3d(-5px, -8px, 0);
   }
 }
