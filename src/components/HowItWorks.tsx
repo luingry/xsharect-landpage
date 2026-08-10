@@ -40,8 +40,8 @@ export function HowItWorks() {
         </Reveal>
 
         <ol className="how-steps span-12">
-          {steps.map((s, i) => (
-            <Reveal key={s.n} delay={0.08 * i} className="how-step">
+          {steps.map((s) => (
+            <Reveal key={s.n} className="how-step">
               <span className="how-num" aria-hidden="true">
                 {s.n}
               </span>

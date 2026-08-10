@@ -1,16 +1,21 @@
-import { Reveal } from './Reveal';
-import { useLatestRelease } from '../hooks/useLatestRelease';
-import { AndroidLogo } from './AndroidLogo';
-import { DownloadIcon } from './DownloadIcon';
-import './DownloadSection.css';
+import { Reveal } from "./Reveal";
+import { useLatestRelease } from "../hooks/useLatestRelease";
+import { AndroidLogo } from "./AndroidLogo";
+import { DownloadIcon } from "./DownloadIcon";
+import "./DownloadSection.css";
 
 export function DownloadSection() {
   const { release, loading, error } = useLatestRelease();
 
-  const href = release?.downloadUrl ?? `${import.meta.env.BASE_URL}apk/latest.json`;
+  const href =
+    release?.downloadUrl ?? `${import.meta.env.BASE_URL}apk/latest.json`;
 
   return (
-    <section id="download" className="download section" aria-labelledby="download-title">
+    <section
+      id="download"
+      className="download section"
+      aria-labelledby="download-title"
+    >
       <div className="container">
         <Reveal className="span-12">
           <div className="download-card">
@@ -23,10 +28,10 @@ export function DownloadSection() {
                 Download externo
               </h2>
               <p className="section-lead download-lead">
-                O Xsharect é distribuído como APK assinado. Baixe direto pelo botão
-                abaixo e instale manualmente no dispositivo — habilite
-                &quot;Fontes desconhecidas&quot; ou permita a instalação pelo navegador
-                quando solicitado.
+                O Xsharect é distribuído como APK assinado. Baixe direto pelo
+                botão abaixo e instale manualmente no dispositivo — habilite
+                &quot;Fontes desconhecidas&quot; ou permita a instalação pelo
+                navegador quando solicitado.
               </p>
               <ol className="download-steps">
                 <li>Baixe o APK pelo botão abaixo</li>
@@ -37,7 +42,11 @@ export function DownloadSection() {
 
             <div className="download-cta-block">
               {loading ? (
-                <div className="download-skeleton" aria-busy="true" aria-label="Carregando release">
+                <div
+                  className="download-skeleton"
+                  aria-busy="true"
+                  aria-label="Carregando release"
+                >
                   <div className="skeleton-line skeleton-line-lg" />
                   <div className="skeleton-line" />
                 </div>
@@ -54,7 +63,8 @@ export function DownloadSection() {
                   </a>
                   {error && (
                     <p className="download-fallback" role="status">
-                      Não foi possível carregar a versão mais recente. Tente de novo em instantes.
+                      Não foi possível carregar a versão mais recente. Tente de
+                      novo em instantes.
                     </p>
                   )}
                   {!error && release?.version && (

@@ -1,92 +1,66 @@
 .desktop-frame {
-  margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 0.9rem;
+  margin: 0;
 }
-
 .desktop-shell {
   width: 100%;
-  max-width: 520px;
+  max-width: 40rem;
 }
-
 .desktop-chrome {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 10px 14px;
-  background: var(--surface-2);
+  gap: 0.35rem;
+  padding: 0.65rem 0.8rem;
   border: 1px solid var(--outline);
-  border-bottom: none;
-  border-radius: 12px 12px 0 0;
+  border-bottom: 0;
+  background: var(--bg);
 }
-
 .desktop-dot {
-  width: 10px;
-  height: 10px;
+  width: 0.45rem;
+  height: 0.45rem;
   border-radius: 50%;
-  background: var(--surface-3);
+  background: var(--outline);
 }
-
 .desktop-dot:first-child {
-  background: #c15f3c;
-  opacity: 0.7;
+  background: var(--accent);
 }
-
 .desktop-url {
   margin-left: auto;
-  font-size: 0.6875rem;
-  color: var(--text-muted);
-  font-family: ui-monospace, monospace;
+  color: var(--text-faint);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
 }
-
 .desktop-screen {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--outline);
-  border-top: none;
-  background: var(--bg);
   aspect-ratio: 16 / 10;
   overflow: hidden;
-  padding: 6px;
+  padding: 0.3rem;
+  border: 1px solid var(--outline);
+  background: var(--bg);
 }
-
-.desktop-screen img,
-.desktop-screen video,
 .desktop-screen-media {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: contain;
   object-position: center top;
-  border-radius: 4px;
 }
-
 .desktop-stand {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 4px;
 }
-
 .desktop-neck {
-  width: 80px;
-  height: 28px;
-  background: linear-gradient(180deg, var(--surface-3), var(--surface-2));
+  width: 5rem;
+  height: 1.6rem;
+  background: var(--surface-raised);
   clip-path: polygon(20% 0, 80% 0, 100% 100%, 0 100%);
 }
-
 .desktop-base {
-  width: 140px;
-  height: 8px;
-  border-radius: 0 0 8px 8px;
-  background: var(--surface-3);
-}
-
-.desktop-caption {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  text-align: center;
+  width: 9rem;
+  height: 0.5rem;
+  background: var(--surface-raised);
 }

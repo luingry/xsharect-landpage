@@ -1,151 +1,165 @@
 .hero {
-  min-height: min(100dvh, 900px);
-  display: flex;
+  min-height: min(100dvh, 56rem);
+  display: grid;
   align-items: center;
-  padding-block: var(--section-py);
-  overflow: hidden;
+  padding: clamp(7rem, 13vw, 10rem) 0 clamp(5rem, 10vw, 8rem);
+  overflow: clip;
 }
-
 .hero-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 2.5rem;
+  gap: 3rem;
   align-items: center;
 }
-
 .hero-copy {
-  max-width: 36rem;
+  position: relative;
+  z-index: 2;
+  max-width: 38rem;
 }
-
 .hero-title {
-  font-size: clamp(2.25rem, 5vw, 4.25rem);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 1.05;
-  margin: 0.75rem 0 1.25rem;
-  max-width: 14ch;
+  margin: 0.7rem 0 1.5rem;
+  max-width: 10ch;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7.3vw, 6.9rem);
+  font-weight: 400;
+  letter-spacing: -0.065em;
+  line-height: 0.91;
+  text-wrap: balance;
 }
-
-.hero-title-accent {
-  color: var(--primary);
+.hero-title span {
+  color: var(--accent);
 }
-
 .hero-lead {
-  font-size: 1.0625rem;
+  max-width: 48ch;
+  margin: 0;
+  color: var(--text-soft);
+  font-size: clamp(1rem, 1.4vw, 1.125rem);
   line-height: 1.65;
-  color: var(--text-muted);
-  max-width: 42ch;
-  margin: 0 0 2rem;
 }
-
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
 }
-
+.hero-link {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+.hero-link span {
+  color: var(--accent);
+  font-size: 1.25rem;
+  transition: transform 180ms ease-out;
+}
+.hero-link:hover span {
+  transform: translateY(3px);
+}
+.hero-proof {
+  margin: 2.25rem 0 0;
+  color: var(--text-faint);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
 .hero-visual {
   position: relative;
-  min-height: 240px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
+  min-height: 16rem;
+  isolation: isolate;
 }
-
-.hero-visual .hero-demo-wrap {
-  pointer-events: auto;
-}
-
-.hero-glow {
+.hero-orbit {
   position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    ellipse 68% 62% at 48% 50%,
-    rgba(193, 95, 60, 0.24),
-    transparent 70%
-  );
-  pointer-events: none;
-  transform: scale(1.15);
+  width: 135%;
+  aspect-ratio: 1;
+  top: -34%;
+  right: -18%;
+  border: 1px solid var(--outline);
+  border-radius: 50%;
+  z-index: -1;
 }
-
+.hero-orbit::before,
+.hero-orbit::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid var(--outline);
+}
+.hero-orbit::before {
+  inset: 11%;
+}
+.hero-orbit::after {
+  inset: 22%;
+}
+.hero-address {
+  position: absolute;
+  right: 2%;
+  top: 2%;
+  z-index: 2;
+  margin: 0;
+  padding: 0.45rem 0.6rem;
+  color: var(--accent);
+  background: var(--bg);
+  font-size: 0.69rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
 .hero-demo-wrap {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  overflow: visible;
-  background: transparent;
-  border: none;
-  box-shadow: none;
-  transform: scale(1.22);
-  transform-origin: 42% 50%;
-  will-change: transform;
+  overflow: hidden;
+  border: 1px solid var(--outline);
+  background: var(--surface);
+  box-shadow: 1.2rem 1.2rem 0
+    color-mix(in oklch, var(--accent) 12%, transparent);
+  transform: rotate(-2deg);
 }
-
 .hero-demo-mask {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 225'%3E%3Cdefs%3E%3CradialGradient id='g' cx='48%25' cy='50%25' r='55%25'%3E%3Cstop offset='0%25' stop-color='white'/%3E%3Cstop offset='52%25' stop-color='white'/%3E%3Cstop offset='78%25' stop-color='white' stop-opacity='0.4'/%3E%3Cstop offset='100%25' stop-color='white' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Cpath d='M198 16 C292 6 362 38 382 92 C398 138 372 188 308 210 C248 228 138 220 78 186 C28 158 12 108 38 64 C66 20 118 10 198 16 Z' fill='url(%23g)'/%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 225'%3E%3Cdefs%3E%3CradialGradient id='g' cx='48%25' cy='50%25' r='55%25'%3E%3Cstop offset='0%25' stop-color='white'/%3E%3Cstop offset='52%25' stop-color='white'/%3E%3Cstop offset='78%25' stop-color='white' stop-opacity='0.4'/%3E%3Cstop offset='100%25' stop-color='white' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Cpath d='M198 16 C292 6 362 38 382 92 C398 138 372 188 308 210 C248 228 138 220 78 186 C28 158 12 108 38 64 C66 20 118 10 198 16 Z' fill='url(%23g)'/%3E%3C/svg%3E");
-  -webkit-mask-size: 100% 100%;
-  mask-size: 100% 100%;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-position: center;
 }
-
 .hero-demo-video {
+  display: block;
   width: 100%;
   height: 100%;
-  display: block;
   object-fit: cover;
   object-position: center;
-  background: var(--bg);
 }
-
 @media (min-width: 900px) {
   .hero-grid {
     grid-template-columns: repeat(12, minmax(0, 1fr));
     column-gap: clamp(1rem, 2vw, 1.5rem);
-    row-gap: 0;
-    align-items: center;
   }
-
-  /* texto 6 col, sobrepõe 2 col do vídeo (cols 5–6) */
   .hero-copy {
     grid-column: 1 / span 6;
-    grid-row: 1;
-    position: relative;
-    z-index: 2;
-    max-width: none;
-    padding-right: 0.5rem;
   }
-
-  /* vídeo 8 col, começa na col 5 */
   .hero-visual {
-    grid-column: 5 / span 8;
-    grid-row: 1;
-    z-index: 1;
-    min-height: clamp(280px, 36vw, 420px);
-    margin-block: -1.5rem;
+    grid-column: 6 / span 7;
+    min-height: 28rem;
+    margin-right: -6vw;
   }
-
   .hero-demo-wrap {
-    max-width: none;
-    transform: scale(1.28);
-    transform-origin: 38% 50%;
+    width: 112%;
+    margin-top: 2rem;
   }
 }
-
-@media (max-width: 767px) {
-  .hero-visual {
-    min-height: auto;
+@media (max-width: 480px) {
+  .hero {
+    padding-top: 6rem;
   }
-
-  .hero-demo-wrap {
-    transform: scale(1.08);
-    transform-origin: center;
+  .hero-title {
+    font-size: clamp(2.85rem, 15vw, 4.2rem);
+  }
+  .hero-visual {
+    min-height: 12rem;
+  }
+  .hero-address {
+    font-size: 0.6rem;
   }
 }
