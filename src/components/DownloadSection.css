@@ -6,6 +6,10 @@
   color: var(--bg);
 }
 
+.download {
+  scroll-margin-top: 6.5rem;
+}
+
 .download-card .section-title {
   max-width: 13ch;
 }
@@ -73,6 +77,16 @@
   margin: 0;
   color: color-mix(in oklch, var(--bg) 70%, transparent);
   font-size: 0.78rem;
+  text-align: center;
+}
+
+.download-proof {
+  margin: 0;
+  color: color-mix(in oklch, var(--bg) 74%, transparent);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.045em;
+  line-height: 1.4;
   text-align: center;
 }
 

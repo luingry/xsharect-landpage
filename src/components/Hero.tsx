@@ -1,11 +1,13 @@
 import { DownloadIcon } from "./DownloadIcon";
+import { HeroShader } from "./HeroShader";
 import "./Hero.css";
 
 export function Hero() {
-  const demoSrc = `${import.meta.env.BASE_URL}demo/xsharect-demo.mp4`;
+  const base = import.meta.env.BASE_URL;
 
   return (
     <section className="hero" aria-labelledby="hero-title">
+      <HeroShader />
       <div className="container">
         <div className="hero-grid span-12">
           <div className="hero-copy">
@@ -36,17 +38,34 @@ export function Hero() {
             <p className="hero-address" aria-hidden="true">
               http://192.168.0.24:9240
             </p>
-            <div className="hero-demo-wrap">
-              <div className="hero-demo-mask">
-                <video
-                  className="hero-demo-video"
-                  src={demoSrc}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  aria-label="Demonstração do app Xsharect e do visualizador web"
+            <div className="hero-product-stage">
+              <div className="hero-monitor">
+                <div className="hero-monitor-chrome" aria-hidden="true">
+                  <i />
+                  <i />
+                  <i />
+                </div>
+                <div className="hero-demo-mask">
+                  <video
+                    className="hero-demo-video"
+                    src={`${base}demo/viewer-tabs.mp4`}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    aria-label="Visualizador web Xsharect"
+                  />
+                </div>
+                <div className="hero-monitor-stand" aria-hidden="true" />
+              </div>
+              <div className="hero-phone" aria-hidden="true">
+                <span className="hero-phone-speaker" />
+                <img
+                  src={`${base}screens/app-host.png`}
+                  alt=""
+                  width={390}
+                  height={844}
                 />
               </div>
             </div>

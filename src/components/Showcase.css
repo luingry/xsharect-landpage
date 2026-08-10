@@ -1,93 +1,565 @@
 .showcase {
+  position: relative;
   background: var(--surface);
+  overflow: clip;
+}
+.showcase::before,
+.showcase::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+}
+.showcase::before {
+  width: 28rem;
+  height: 28rem;
+  right: -16rem;
+  top: 15rem;
+  border: 1px solid var(--outline);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 2.5rem var(--surface),
+    0 0 0 calc(2.5rem + 1px) var(--outline);
+}
+.showcase::after {
+  content: "PORT 9240  ·  SESSION LOCAL  ·  PORT 9240";
+  right: -10rem;
+  bottom: 20rem;
+  color: var(--text-faint);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  transform: rotate(-90deg);
+  transform-origin: center;
+}
+.showcase .container {
+  position: relative;
+  z-index: 1;
 }
 .showcase-intro {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.25rem;
+  max-width: 52rem;
 }
 .showcase-intro .section-title {
-  max-width: 15ch;
+  max-width: 14ch;
 }
-.connection-line {
+.signal-route {
+  position: relative;
+  display: grid;
+  gap: 3rem;
+  margin-top: clamp(3.5rem, 9vw, 7rem);
+}
+.route-wire {
+  display: none;
+}
+.route-station {
+  position: relative;
+  z-index: 1;
+}
+.route-station h3 {
+  margin: 0.45rem 0 0.8rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 2.2vw, 2.2rem);
+  font-weight: 400;
+  line-height: 0.94;
+  letter-spacing: -0.055em;
+}
+.route-station > p:not(.station-index) {
+  max-width: 27ch;
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.9rem;
+  line-height: 1.58;
+}
+.station-index {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+.route-station .device-frame {
+  margin-top: 1.5rem;
+  align-items: flex-start;
+}
+.route-station .device-shell {
+  margin-left: 1rem;
+}
+.route-station .device-caption,
+.route-station .desktop-caption {
+  text-align: left;
+}
+.route-station-browser .desktop-frame {
+  margin-top: 1.5rem;
+  align-items: flex-start;
+}
+.route-station-lan {
+  padding: 1.5rem 0 1.55rem 2rem;
+  border-block: 1px solid var(--outline);
+}
+.route-station-lan::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.5rem;
+  bottom: 1.5rem;
+  width: 1px;
+  background: var(--accent);
+}
+.lan-mark {
+  display: flex;
+  gap: 0.32rem;
+  align-items: end;
+  height: 1.2rem;
+  margin-bottom: 1rem;
+}
+.lan-mark i {
+  display: block;
+  width: 0.34rem;
+  background: var(--accent);
+}
+.lan-mark i:nth-child(1) {
+  height: 0.42rem;
+}
+.lan-mark i:nth-child(2) {
+  height: 0.78rem;
+}
+.lan-mark i:nth-child(3) {
+  height: 1.15rem;
+}
+.route-station code {
+  display: inline-block;
+  margin-top: 1.2rem;
+  color: var(--accent);
+  font-family: var(--font);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+.readout-heading {
   display: flex;
   align-items: center;
-  gap: 0.65rem;
-  margin-top: clamp(2.5rem, 6vw, 5rem);
+  gap: 1rem;
+  margin-top: clamp(4.5rem, 10vw, 8rem);
   color: var(--text-faint);
   font-size: 0.69rem;
   font-weight: 800;
-  letter-spacing: 0.11em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
-.connection-line i {
-  width: clamp(1.5rem, 12vw, 10rem);
+.readout-heading i {
+  height: 1px;
+  flex: 1;
+  background: var(--outline);
+}
+.route-readouts {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  margin-top: 1.35rem;
+  padding-left: 2.1rem;
+}
+.route-readouts::before {
+  content: "";
+  position: absolute;
+  left: 0.5rem;
+  top: 0.4rem;
+  bottom: 0.4rem;
+  width: 1px;
+  background: var(--outline);
+}
+.readout-trace {
+  display: none;
+}
+.route-readout {
+  position: relative;
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  gap: 0.85rem;
+  padding: 1.25rem 0 1.35rem;
+  border-bottom: 1px solid var(--outline);
+}
+.route-readout::before {
+  content: "";
+  position: absolute;
+  left: -1.86rem;
+  top: 1.78rem;
+  width: 1rem;
   height: 1px;
   background: var(--outline);
 }
-.connection-line i::after {
+.route-readout::after {
   content: "";
-  display: block;
-  width: 7px;
-  height: 7px;
-  margin-left: auto;
-  transform: translateY(-3px) rotate(45deg);
-  border-top: 1px solid var(--accent);
-  border-right: 1px solid var(--accent);
+  position: absolute;
+  left: -2.08rem;
+  top: 1.57rem;
+  width: 0.42rem;
+  height: 0.42rem;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  background: var(--surface);
 }
-.showcase-frames {
+.route-readout dt {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 3.5rem;
-  align-items: end;
-  margin: clamp(2rem, 6vw, 5rem) 0;
+  gap: 0.25rem;
+  align-content: start;
 }
-.showcase-frames > :first-child {
-  justify-self: center;
-}
-.showcase-frames > :last-child {
-  justify-self: stretch;
-}
-.feature-list {
-  margin: 0;
-  border-top: 1px solid var(--outline);
-}
-.feature-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 0.65rem;
-  padding: 1.35rem 0;
-  border-bottom: 1px solid var(--outline);
-}
-.feature-row dt {
-  display: flex;
-  align-items: baseline;
-  gap: 0.8rem;
-  font-size: 1rem;
-  font-weight: 800;
-}
-.feature-row dt span {
+.tap-number {
   color: var(--accent);
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
+  font-family: var(--font-display);
+  font-size: clamp(1.65rem, 8vw, 2.3rem);
+  font-weight: 400;
+  line-height: 0.78;
+  letter-spacing: -0.07em;
 }
-.feature-row dd {
-  max-width: 50ch;
+.route-readout dt strong {
+  font-size: 1rem;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+.route-readout dd {
+  max-width: 39ch;
   margin: 0;
   color: var(--text-soft);
-  font-size: 0.94rem;
+  font-size: 0.89rem;
   line-height: 1.55;
 }
-@media (min-width: 800px) {
-  .showcase-frames {
-    grid-template-columns: 5fr 7fr;
-    gap: clamp(2rem, 7vw, 7rem);
+@media (min-width: 760px) {
+  .signal-route {
+    min-height: 42rem;
+    grid-template-columns: 1fr 0.9fr 1.3fr;
+    align-items: start;
+    column-gap: clamp(1rem, 4vw, 4rem);
   }
-  .showcase-frames > :first-child {
-    transform: translateY(3rem);
+  .route-wire {
+    position: absolute;
+    display: block;
+    inset: 3.5rem 1rem auto;
+    width: calc(100% - 2rem);
+    height: 24rem;
+    overflow: visible;
   }
-  .feature-row {
-    grid-template-columns: 5fr 7fr;
-    gap: clamp(2rem, 7vw, 7rem);
+  .route-line {
+    fill: none;
+    stroke: var(--outline);
+    stroke-width: 1.35;
+    vector-effect: non-scaling-stroke;
+  }
+  .route-pulse {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 2.25;
+    vector-effect: non-scaling-stroke;
+    stroke-dasharray: 0.025 0.975;
+    stroke-dashoffset: 1;
+    opacity: 0;
+  }
+  .route-is-active .route-pulse {
+    animation: route-travel 4.8s linear infinite;
+    opacity: 0.9;
+  }
+  .route-station-android {
+    margin-top: 3.7rem;
+  }
+  .route-station-lan {
+    margin-top: 0;
+    padding: 2rem 0 2rem 1.5rem;
+    border-block: 0;
+  }
+  .route-station-lan::before {
+    top: 0.2rem;
+    bottom: 0.2rem;
+  }
+  .route-station-browser {
+    margin-top: 15.2rem;
+  }
+  .route-station .device-shell {
+    margin-left: 0;
+  }
+  .route-readouts {
+    min-height: 12rem;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-rows: 1fr;
+    gap: 0;
+    margin-top: 2rem;
+    padding: 0;
+  }
+  .route-readouts::before {
+    display: none;
+  }
+  .readout-trace {
+    position: absolute;
+    display: block;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+  .readout-trace-line {
+    fill: none;
+    stroke: var(--outline);
+    stroke-width: 1.25;
+    vector-effect: non-scaling-stroke;
+  }
+  .readout-trace-pulse {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 2;
+    vector-effect: non-scaling-stroke;
+    stroke-dasharray: 0.017 0.983;
+    stroke-dashoffset: 1;
+    opacity: 0;
+  }
+  .readout-trace circle {
+    fill: var(--surface);
+    stroke: var(--accent);
+    stroke-width: 1.5;
+    vector-effect: non-scaling-stroke;
+  }
+  .route-readout {
+    z-index: 1;
+    display: block;
+    padding: 0;
+    border: 0;
+  }
+  .route-readout::before,
+  .route-readout::after {
+    display: none;
+  }
+  .route-readout dt {
+    display: flex;
+    align-items: baseline;
+    gap: 0.65rem;
+  }
+  .tap-number {
+    font-size: clamp(2.3rem, 4vw, 3.6rem);
+  }
+  .route-readout dt strong {
+    max-width: 8ch;
+    font-size: 1.08rem;
+  }
+  .route-readout dd {
+    margin-top: 0.7rem;
+  }
+  .route-readout-01 {
+    grid-column: 1 / span 3;
+    grid-row: 1;
+    align-self: end;
+  }
+  .route-readout-02 {
+    grid-column: 4 / span 3;
+    grid-row: 1;
+    align-self: end;
+  }
+  .route-readout-03 {
+    grid-column: 7 / span 3;
+    grid-row: 1;
+    align-self: end;
+  }
+  .route-readout-04 {
+    grid-column: 10 / span 3;
+    grid-row: 1;
+    align-self: end;
+  }
+  .route-is-active .readout-trace-pulse {
+    animation: readout-travel 4.8s 1.3s linear infinite;
+    opacity: 0.9;
+  }
+}
+@keyframes route-travel {
+  to {
+    stroke-dashoffset: -0.025;
+  }
+}
+@keyframes readout-travel {
+  to {
+    stroke-dashoffset: -0.017;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .route-pulse {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .showcase::before {
+      animation: technical-arc linear both;
+      animation-timeline: view(block);
+      animation-range: entry 0% exit 100%;
+    }
+    .showcase::after {
+      animation: technical-port linear both;
+      animation-timeline: view(block);
+      animation-range: entry 8% exit 92%;
+    }
+    .route-station-android {
+      animation: station-near linear both;
+      animation-timeline: view(block);
+      animation-range: entry 8% exit 92%;
+    }
+    .route-station-lan {
+      animation: station-fixed linear both;
+      animation-timeline: view(block);
+      animation-range: entry 8% exit 92%;
+    }
+    .route-station-browser {
+      animation: station-far linear both;
+      animation-timeline: view(block);
+      animation-range: entry 8% exit 92%;
+    }
+    .route-readout-01,
+    .route-readout-03 {
+      animation: readout-left linear both;
+      animation-timeline: view(block);
+      animation-range: entry 15% exit 88%;
+    }
+    .route-readout-02,
+    .route-readout-04 {
+      animation: readout-right linear both;
+      animation-timeline: view(block);
+      animation-range: entry 15% exit 88%;
+    }
+  }
+}
+@keyframes technical-arc {
+  from {
+    transform: translate3d(0, 24px, 0);
+    opacity: 0;
+  }
+  20%,
+  78% {
+    opacity: 0.33;
+  }
+  to {
+    transform: translate3d(0, -24px, 0);
+    opacity: 0;
+  }
+}
+@keyframes technical-port {
+  from {
+    transform: translate3d(0, 18px, 0) rotate(-90deg);
+    opacity: 0;
+  }
+  25%,
+  72% {
+    opacity: 0.45;
+  }
+  to {
+    transform: translate3d(0, -18px, 0) rotate(-90deg);
+    opacity: 0;
+  }
+}
+@keyframes station-near {
+  from {
+    transform: translate3d(0, 24px, 0);
+  }
+  to {
+    transform: translate3d(0, -24px, 0);
+  }
+}
+@keyframes station-fixed {
+  from {
+    transform: translate3d(0, 8px, 0);
+  }
+  to {
+    transform: translate3d(0, -8px, 0);
+  }
+}
+@keyframes station-far {
+  from {
+    transform: translate3d(0, -18px, 0);
+  }
+  to {
+    transform: translate3d(0, 18px, 0);
+  }
+}
+@keyframes readout-left {
+  from {
+    transform: translate3d(-12px, 16px, 0);
+    opacity: 0.72;
+  }
+  to {
+    transform: translate3d(12px, -16px, 0);
+    opacity: 1;
+  }
+}
+@keyframes readout-right {
+  from {
+    transform: translate3d(12px, 12px, 0);
+    opacity: 0.72;
+  }
+  to {
+    transform: translate3d(-12px, -12px, 0);
+    opacity: 1;
+  }
+}
+@media (max-width: 759px) and (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .showcase::after {
+      display: none;
+    }
+    .route-station-android {
+      animation-name: station-near-mobile;
+    }
+    .route-station-lan {
+      animation-name: station-fixed-mobile;
+    }
+    .route-station-browser {
+      animation-name: station-far-mobile;
+    }
+    .route-readout-01,
+    .route-readout-03 {
+      animation-name: readout-left-mobile;
+    }
+    .route-readout-02,
+    .route-readout-04 {
+      animation-name: readout-right-mobile;
+    }
+  }
+}
+@keyframes station-near-mobile {
+  from {
+    transform: translate3d(0, 10px, 0);
+  }
+  to {
+    transform: translate3d(0, -10px, 0);
+  }
+}
+@keyframes station-fixed-mobile {
+  from {
+    transform: translate3d(0, 4px, 0);
+  }
+  to {
+    transform: translate3d(0, -4px, 0);
+  }
+}
+@keyframes station-far-mobile {
+  from {
+    transform: translate3d(0, -8px, 0);
+  }
+  to {
+    transform: translate3d(0, 8px, 0);
+  }
+}
+@keyframes readout-left-mobile {
+  from {
+    transform: translate3d(-5px, 8px, 0);
+    opacity: 0.8;
+  }
+  to {
+    transform: translate3d(5px, -8px, 0);
+    opacity: 1;
+  }
+}
+@keyframes readout-right-mobile {
+  from {
+    transform: translate3d(5px, 8px, 0);
+    opacity: 0.8;
+  }
+  to {
+    transform: translate3d(-5px, -8px, 0);
+    opacity: 1;
   }
 }

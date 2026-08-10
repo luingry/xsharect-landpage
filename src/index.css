@@ -14,7 +14,7 @@
   --font-display: "Archivo Black", sans-serif;
   --max-w: 78rem;
   --section-py: clamp(4.5rem, 9vw, 8.5rem);
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
 * {
   box-sizing: border-box;
@@ -154,6 +154,22 @@ button {
   );
   background-size: 7px 7px;
   mask-image: linear-gradient(to bottom, black, transparent 72%);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .reveal.is-ready:not(.is-visible) {
+    opacity: 0;
+    transform: translateY(1rem);
+    clip-path: inset(0 0 14% 0);
+    transition:
+      opacity 520ms var(--ease-out),
+      transform 520ms var(--ease-out),
+      clip-path 520ms var(--ease-out);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    clip-path: inset(0);
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   *,

@@ -1,46 +1,256 @@
 .how {
+  position: relative;
   overflow: clip;
 }
+.how::after {
+  content: "LAN / 9240";
+  position: absolute;
+  right: clamp(1rem, 6vw, 5rem);
+  top: 18%;
+  color: var(--text-faint);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  opacity: 0;
+  pointer-events: none;
+  transform: rotate(90deg);
+}
+.how-protocol {
+  position: relative;
+  margin-top: clamp(2.8rem, 6vw, 5rem);
+}
 .how-steps {
+  position: relative;
   list-style: none;
   display: grid;
-  grid-template-columns: 1fr;
   gap: 0;
-  margin: clamp(2.5rem, 5vw, 4rem) 0 0;
+  margin: 0;
   padding: 0;
   border-top: 1px solid var(--outline);
 }
+.how-backbone {
+  position: absolute;
+  z-index: 0;
+  left: 1.2rem;
+  top: 0;
+  width: 2.5rem;
+  height: 100%;
+  overflow: visible;
+}
+.how-backbone-line {
+  fill: none;
+  stroke: var(--outline);
+  stroke-width: 1.2;
+  vector-effect: non-scaling-stroke;
+}
+.how-backbone-pulse {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 0.025 0.975;
+  stroke-dashoffset: 1;
+  opacity: 0;
+}
 .how-step {
+  position: relative;
+  z-index: 1;
   display: grid;
-  grid-template-columns: 2.7rem 1fr;
-  gap: 1rem;
-  padding: 1.4rem 0;
+  grid-template-columns: 3.25rem minmax(0, 1fr);
+  gap: 0.8rem;
+  padding: 1.6rem 0 1.75rem;
   border-bottom: 1px solid var(--outline);
+}
+.how-step::before {
+  content: "";
+  position: absolute;
+  left: 1.04rem;
+  top: 2.05rem;
+  width: 0.38rem;
+  height: 0.38rem;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  background: var(--bg);
 }
 .how-num {
   color: var(--accent);
-  font-size: 0.75rem;
+  font-family: var(--font-display);
+  font-size: 1.65rem;
+  font-weight: 400;
+  letter-spacing: -0.07em;
+  line-height: 0.84;
+}
+.how-stage {
+  margin: 0 0 0.38rem;
+  color: var(--text-faint);
+  font-size: 0.66rem;
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.14em;
 }
 .how-step-title {
-  margin: 0 0 0.35rem;
-  font-size: 1.1rem;
-  letter-spacing: -0.02em;
+  max-width: 14ch;
+  margin: 0 0 0.4rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 5vw, 1.8rem);
+  font-weight: 400;
+  letter-spacing: -0.05em;
+  line-height: 0.94;
 }
 .how-step-body {
-  max-width: 55ch;
+  max-width: 51ch;
   margin: 0;
   color: var(--text-soft);
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-size: 0.91rem;
+  line-height: 1.57;
 }
 @media (min-width: 768px) {
-  .how-steps {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: clamp(2rem, 8vw, 8rem);
+  .how-protocol {
+    margin-top: clamp(3.5rem, 7vw, 6rem);
   }
-  .how-step:nth-child(2) {
-    border-top: 0;
+  .how-backbone {
+    left: clamp(7.1rem, 14vw, 11.4rem);
+    width: 3rem;
+  }
+  .how-step {
+    grid-template-columns:
+      clamp(6.3rem, 12vw, 10.2rem) minmax(7rem, 0.7fr)
+      minmax(0, 1.5fr);
+    gap: clamp(1.2rem, 3vw, 3rem);
+    min-height: 8.5rem;
+    padding: clamp(1.35rem, 2.7vw, 2.45rem) 0;
+  }
+  .how-step::before {
+    left: clamp(7.66rem, 14.55vw, 12rem);
+    top: clamp(2.2rem, 3.9vw, 3.7rem);
+  }
+  .how-num {
+    font-size: clamp(2.9rem, 5vw, 4.8rem);
+  }
+  .how-stage {
+    align-self: start;
+    margin-top: 0.55rem;
+  }
+  .how-step > div {
+    display: contents;
+  }
+  .how-step-title {
+    grid-column: 2;
+    margin: 0.35rem 0 0;
+    font-size: clamp(1.55rem, 2.8vw, 2.8rem);
+  }
+  .how-step-body {
+    grid-column: 3;
+    align-self: center;
+  }
+  .how-steps > li:nth-child(2) .how-step-title,
+  .how-steps > li:nth-child(4) .how-step-title {
+    transform: translateX(clamp(0.5rem, 2vw, 2rem));
+  }
+  .how-steps > li:nth-child(2) .how-step-body {
+    transform: translateY(0.8rem);
+  }
+  .how-steps > li:nth-child(4) .how-step-body {
+    transform: translateY(-0.6rem);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .how::after {
+      animation: how-coordinate linear both;
+      animation-timeline: view(block);
+      animation-range: entry 0% exit 100%;
+    }
+    .how-is-active .how-backbone-pulse {
+      animation: how-pulse 5.4s linear infinite;
+      opacity: 0.9;
+    }
+    .how-steps > li:nth-child(1) .how-step {
+      animation: how-step-odd linear both;
+      animation-timeline: view(block);
+      animation-range: entry 12% exit 88%;
+    }
+    .how-steps > li:nth-child(2) .how-step {
+      animation: how-step-even linear both;
+      animation-timeline: view(block);
+      animation-range: entry 12% exit 88%;
+    }
+    .how-steps > li:nth-child(3) .how-step {
+      animation: how-step-odd linear both;
+      animation-timeline: view(block);
+      animation-range: entry 12% exit 88%;
+    }
+    .how-steps > li:nth-child(4) .how-step {
+      animation: how-step-even linear both;
+      animation-timeline: view(block);
+      animation-range: entry 12% exit 88%;
+    }
+  }
+}
+@keyframes how-coordinate {
+  from {
+    transform: translate3d(0, 18px, 0) rotate(90deg);
+    opacity: 0;
+  }
+  24%,
+  74% {
+    opacity: 0.42;
+  }
+  to {
+    transform: translate3d(0, -18px, 0) rotate(90deg);
+    opacity: 0;
+  }
+}
+@keyframes how-pulse {
+  to {
+    stroke-dashoffset: -0.025;
+  }
+}
+@keyframes how-step-odd {
+  from {
+    transform: translate3d(0, 12px, 0);
+  }
+  to {
+    transform: translate3d(0, -12px, 0);
+  }
+}
+@keyframes how-step-even {
+  from {
+    transform: translate3d(0, -10px, 0);
+  }
+  to {
+    transform: translate3d(0, 10px, 0);
+  }
+}
+@media (max-width: 767px) and (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .how-steps > li:nth-child(1) .how-step,
+    .how-steps > li:nth-child(3) .how-step {
+      animation-name: how-step-odd-mobile;
+    }
+    .how-steps > li:nth-child(2) .how-step,
+    .how-steps > li:nth-child(4) .how-step {
+      animation-name: how-step-even-mobile;
+    }
+  }
+}
+@keyframes how-step-odd-mobile {
+  from {
+    transform: translate3d(0, 6px, 0);
+  }
+  to {
+    transform: translate3d(0, -6px, 0);
+  }
+}
+@keyframes how-step-even-mobile {
+  from {
+    transform: translate3d(0, -5px, 0);
+  }
+  to {
+    transform: translate3d(0, 5px, 0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .how-backbone-pulse {
+    display: none;
   }
 }

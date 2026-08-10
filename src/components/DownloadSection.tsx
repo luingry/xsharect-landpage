@@ -25,7 +25,7 @@ export function DownloadSection() {
                 <span>Disponível para Android</span>
               </div>
               <h2 id="download-title" className="section-title">
-                Download externo
+                Instale no Android
               </h2>
               <p className="section-lead download-lead">
                 O Xsharect é distribuído como APK assinado. Baixe direto pelo
@@ -61,6 +61,9 @@ export function DownloadSection() {
                     <DownloadIcon />
                     <span>Download</span>
                   </a>
+                  <p className="download-proof">
+                    APK oficial · sem conta · direto pela rede local
+                  </p>
                   {error && (
                     <p className="download-fallback" role="status">
                       Não foi possível carregar a versão mais recente. Tente de
