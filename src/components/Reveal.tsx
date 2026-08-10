@@ -19,7 +19,7 @@ export function Reveal({ children, className }: RevealProps) {
         node.classList.add("is-visible");
         observer.disconnect();
       },
-      { threshold: 0.12, rootMargin: "0px 0px -6%" },
+      { threshold: 0.04, rootMargin: "0px 0px -30%" },
     );
     observer.observe(node);
     return () => observer.disconnect();
