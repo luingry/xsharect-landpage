@@ -18,9 +18,8 @@ export function Hero() {
               <span>Na tela certa.</span>
             </h1>
             <p className="hero-lead">
-              O Xsharect transmite a tela do seu Android para qualquer navegador
-              da mesma LAN — sem conta, sem nuvem e sem desviar o tráfego da sua
-              rede.
+              Transmita a tela do Android para qualquer navegador da mesma rede
+              local, sem conta, sem nuvem e sem enviar o tráfego para fora dela.
             </p>
             <div className="hero-actions">
               <a href="#download" className="btn-primary">
@@ -31,7 +30,7 @@ export function Hero() {
                 Ver o produto <span aria-hidden="true">↓</span>
               </a>
             </div>
-            <p className="hero-proof">Android → Wi-Fi local → navegador</p>
+            <p className="hero-proof">Android → rede local → navegador</p>
           </div>
           <div className="hero-visual">
             <div className="hero-orbit" aria-hidden="true" />

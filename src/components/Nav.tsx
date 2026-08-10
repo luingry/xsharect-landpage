@@ -6,7 +6,11 @@ export function Nav() {
     <header className="nav">
       <div className="container">
         <div className="nav-inner span-12">
-          <a href="#" className="nav-brand" aria-label="Xsharect, início">
+          <a
+            href="#conteudo"
+            className="nav-brand"
+            aria-label="Xsharect, início"
+          >
             <img
               src={`${import.meta.env.BASE_URL}icon-512.png`}
               alt=""

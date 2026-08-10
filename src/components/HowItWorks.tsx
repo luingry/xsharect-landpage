@@ -7,25 +7,25 @@ const steps = [
     n: "01",
     stage: "HOST",
     title: "Instale no Android",
-    body: "Baixe o APK, instale no telefone e permita acessibilidade e captura de tela.",
+    body: "Baixe o APK, instale no telefone e autorize a captura de tela.",
   },
   {
     n: "02",
     stage: "STREAM",
     title: "Inicie a transmissão",
-    body: "Toque em Transmitir e confira o endereço local mostrado pelo app.",
+    body: "Toque em Transmitir e confira o endereço da rede local mostrado pelo aplicativo.",
   },
   {
     n: "03",
     stage: "VIEWER",
     title: "Abra no navegador",
-    body: "No navegador, abra o endereço. Confirme a mesma rede Wi-Fi e evite rede de convidados.",
+    body: "Abra o endereço no navegador. Confirme que os dois dispositivos estão na mesma rede Wi-Fi e evite redes para convidados.",
   },
   {
     n: "04",
     stage: "CONTROL",
     title: "Controle quando precisar",
-    body: "Ative a permissão de controle quando precisar tocar ou navegar remotamente.",
+    body: "Ative o serviço de acessibilidade para tocar na tela ou usar a navegação remota.",
   },
 ];
 

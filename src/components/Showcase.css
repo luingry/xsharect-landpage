@@ -128,20 +128,12 @@
   letter-spacing: 0.04em;
 }
 .readout-heading {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
   margin-top: clamp(4.5rem, 10vw, 8rem);
   color: var(--text-faint);
   font-size: 0.69rem;
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-}
-.readout-heading i {
-  height: 1px;
-  flex: 1;
-  background: var(--outline);
 }
 .route-readouts {
   position: relative;
@@ -151,45 +143,12 @@
   margin-top: 1.35rem;
   padding-left: 2.1rem;
 }
-.route-readouts::before {
-  content: "";
-  position: absolute;
-  left: 0.5rem;
-  top: 0.4rem;
-  bottom: 0.4rem;
-  width: 1px;
-  background: var(--outline);
-}
-.readout-trace {
-  display: none;
-}
 .route-readout {
   position: relative;
   display: grid;
   grid-template-columns: 4.5rem minmax(0, 1fr);
   gap: 0.85rem;
-  padding: 1.25rem 0 1.35rem;
-  border-bottom: 1px solid var(--outline);
-}
-.route-readout::before {
-  content: "";
-  position: absolute;
-  left: -1.86rem;
-  top: 1.78rem;
-  width: 1rem;
-  height: 1px;
-  background: var(--outline);
-}
-.route-readout::after {
-  content: "";
-  position: absolute;
-  left: -2.08rem;
-  top: 1.57rem;
-  width: 0.42rem;
-  height: 0.42rem;
-  border: 1px solid var(--accent);
-  border-radius: 50%;
-  background: var(--surface);
+  padding: 1.15rem 0;
 }
 .route-readout dt {
   display: grid;
@@ -272,47 +231,11 @@
     margin-top: 2rem;
     padding: 0;
   }
-  .route-readouts::before {
-    display: none;
-  }
-  .readout-trace {
-    position: absolute;
-    display: block;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    overflow: visible;
-  }
-  .readout-trace-line {
-    fill: none;
-    stroke: var(--outline);
-    stroke-width: 1.25;
-    vector-effect: non-scaling-stroke;
-  }
-  .readout-trace-pulse {
-    fill: none;
-    stroke: var(--accent);
-    stroke-width: 2;
-    vector-effect: non-scaling-stroke;
-    stroke-dasharray: 0.017 0.983;
-    stroke-dashoffset: 1;
-    opacity: 0;
-  }
-  .readout-trace circle {
-    fill: var(--surface);
-    stroke: var(--accent);
-    stroke-width: 1.5;
-    vector-effect: non-scaling-stroke;
-  }
   .route-readout {
     z-index: 1;
     display: block;
     padding: 0;
     border: 0;
-  }
-  .route-readout::before,
-  .route-readout::after {
-    display: none;
   }
   .route-readout dt {
     display: flex;
@@ -349,19 +272,10 @@
     grid-row: 1;
     align-self: end;
   }
-  .route-is-active .readout-trace-pulse {
-    animation: readout-travel 4.8s 1.3s linear infinite;
-    opacity: 0.9;
-  }
 }
 @keyframes route-travel {
   to {
     stroke-dashoffset: -0.025;
-  }
-}
-@keyframes readout-travel {
-  to {
-    stroke-dashoffset: -0.017;
   }
 }
 @media (prefers-reduced-motion: reduce) {

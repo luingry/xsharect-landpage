@@ -28,15 +28,15 @@ export function DownloadSection() {
                 Instale no Android
               </h2>
               <p className="section-lead download-lead">
-                O Xsharect é distribuído como APK assinado. Baixe direto pelo
-                botão abaixo e instale manualmente no dispositivo — habilite
-                &quot;Fontes desconhecidas&quot; ou permita a instalação pelo
-                navegador quando solicitado.
+                O Xsharect é distribuído como APK assinado. Baixe o arquivo pelo
+                botão abaixo e instale-o no Android. Quando o Android solicitar,
+                autorize o navegador a instalar aplicativos desconhecidos.
               </p>
               <ol className="download-steps">
                 <li>Baixe o APK pelo botão abaixo</li>
                 <li>Abra o arquivo no Android e confirme a instalação</li>
-                <li>Conceda acessibilidade e permissão de captura de tela</li>
+                <li>Autorize a captura de tela</li>
+                <li>Ative o serviço de acessibilidade para controle remoto</li>
               </ol>
             </div>
 
