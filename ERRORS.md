@@ -18,5 +18,5 @@
 
 - Symptom: Text in "Capacidades na mesma sessão" looked blurred while scrolling.
 - Root cause: Scroll-driven `readout-left` and `readout-right` keyframes applied fractional `translate3d` transforms to the same wrappers that render the capability text.
-- Solution: Removed readout parallax animations and their mobile variants. The text wrappers stay static while the section backgrounds and route stations retain their parallax.
-- Guard: Do not apply scroll transforms to wrappers that render dense text; reserve parallax for decorative layers or visual media.
+- Solution: Moved readout parallax to a separate, low-opacity number marker inside each capability. Text wrappers and their `dt`/`dd` remain static while the decorative marker moves.
+- Guard: Do not apply scroll transforms to wrappers that render dense text; use a dedicated decorative layer for parallax.

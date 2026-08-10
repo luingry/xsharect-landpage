@@ -152,6 +152,9 @@ export function Showcase() {
               key={number}
               className={`route-readout route-readout-${number}`}
             >
+              <span className="route-readout-mark" aria-hidden="true">
+                {number}
+              </span>
               <dt>
                 <span className="tap-number">{number}</span>
                 <strong>{title}</strong>

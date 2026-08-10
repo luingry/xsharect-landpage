@@ -150,10 +150,25 @@
   gap: 0.85rem;
   padding: 1.15rem 0;
 }
+.route-readout-mark {
+  position: absolute;
+  top: 0.35rem;
+  right: 0.15rem;
+  z-index: 0;
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 15vw, 5.2rem);
+  letter-spacing: -0.1em;
+  line-height: 0.8;
+  opacity: 0.12;
+  pointer-events: none;
+}
 .route-readout dt {
   display: grid;
   gap: 0.25rem;
   align-content: start;
+  position: relative;
+  z-index: 1;
 }
 .tap-number {
   color: var(--accent);
@@ -174,6 +189,8 @@
   color: var(--text-soft);
   font-size: 0.89rem;
   line-height: 1.55;
+  position: relative;
+  z-index: 1;
 }
 @media (min-width: 760px) {
   .signal-route {
@@ -236,6 +253,12 @@
     display: block;
     padding: 0;
     border: 0;
+  }
+  .route-readout-mark {
+    top: -0.5rem;
+    right: 0;
+    font-size: clamp(4.2rem, 7vw, 6.4rem);
+    opacity: 0.1;
   }
   .route-readout dt {
     display: flex;
@@ -310,6 +333,18 @@
       animation-timeline: view(block);
       animation-range: entry 8% exit 92%;
     }
+    .route-readout-01 .route-readout-mark,
+    .route-readout-03 .route-readout-mark {
+      animation: readout-mark-left linear both;
+      animation-timeline: view(block);
+      animation-range: entry 15% exit 88%;
+    }
+    .route-readout-02 .route-readout-mark,
+    .route-readout-04 .route-readout-mark {
+      animation: readout-mark-right linear both;
+      animation-timeline: view(block);
+      animation-range: entry 15% exit 88%;
+    }
   }
 }
 @keyframes technical-arc {
@@ -364,6 +399,22 @@
     transform: translate3d(0, 18px, 0);
   }
 }
+@keyframes readout-mark-left {
+  from {
+    transform: translate3d(-14px, 12px, 0) rotate(-2deg);
+  }
+  to {
+    transform: translate3d(14px, -12px, 0) rotate(2deg);
+  }
+}
+@keyframes readout-mark-right {
+  from {
+    transform: translate3d(14px, 10px, 0) rotate(2deg);
+  }
+  to {
+    transform: translate3d(-14px, -10px, 0) rotate(-2deg);
+  }
+}
 @media (max-width: 759px) and (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: view()) {
     .showcase::after {
@@ -377,6 +428,14 @@
     }
     .route-station-browser {
       animation-name: station-far-mobile;
+    }
+    .route-readout-01 .route-readout-mark,
+    .route-readout-03 .route-readout-mark {
+      animation-name: readout-mark-left-mobile;
+    }
+    .route-readout-02 .route-readout-mark,
+    .route-readout-04 .route-readout-mark {
+      animation-name: readout-mark-right-mobile;
     }
   }
 }
@@ -402,5 +461,21 @@
   }
   to {
     transform: translate3d(0, 8px, 0);
+  }
+}
+@keyframes readout-mark-left-mobile {
+  from {
+    transform: translate3d(-6px, 6px, 0);
+  }
+  to {
+    transform: translate3d(6px, -6px, 0);
+  }
+}
+@keyframes readout-mark-right-mobile {
+  from {
+    transform: translate3d(6px, 5px, 0);
+  }
+  to {
+    transform: translate3d(-6px, -5px, 0);
   }
 }
