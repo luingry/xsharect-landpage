@@ -21,16 +21,16 @@
   background: var(--surface-raised);
 }
 .device-screen {
-  aspect-ratio: 9 / 19.5;
+  aspect-ratio: 90 / 193;
   overflow: hidden;
   border-radius: 1.45rem;
   background: var(--surface);
 }
-.device-screen img {
+.device-screen video {
+  display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center top;
+  object-fit: contain;
 }
 .device-bar {
   width: 5.5rem;

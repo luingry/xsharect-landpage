@@ -1,4 +1,4 @@
-import { DownloadIcon } from "./DownloadIcon";
+﻿import { DownloadIcon } from "./DownloadIcon";
 import { HeroShader } from "./HeroShader";
 import "./Hero.css";
 
@@ -19,7 +19,7 @@ export function Hero() {
             </h1>
             <p className="hero-lead">
               Transmita a tela do Android para qualquer navegador da mesma rede
-              local, sem conta, sem nuvem e sem enviar o tráfego para fora dela.
+              local, sem conta, sem nuvem e sem enviar o trÃ¡fego para fora dela.
             </p>
             <div className="hero-actions">
               <a href="#download" className="btn-primary">
@@ -27,11 +27,9 @@ export function Hero() {
                 Baixar APK
               </a>
               <a href="#produto" className="hero-link">
-                Ver o produto <span aria-hidden="true">↓</span>
+                Ver o produto <span aria-hidden="true">{"\u2193"}</span>
               </a>
-            </div>
-            <p className="hero-proof">Android → rede local → navegador</p>
-          </div>
+            </div>          </div>
           <div className="hero-visual">
             <div className="hero-orbit" aria-hidden="true" />
             <p className="hero-address" aria-hidden="true">

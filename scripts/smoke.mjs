@@ -13,6 +13,7 @@ const SCREENS = path.join(DIST, 'screens');
 
 const required = [
   'index.html',
+  'demo/android-session.mp4',
   'demo/xsharect-demo.mp4',
   'screens/app-host.png',
   'screens/viewer-desktop.png',

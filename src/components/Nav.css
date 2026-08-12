@@ -51,6 +51,7 @@
     display: none;
   }
   .nav-cta {
+    margin-left: auto;
     min-width: 4.75rem;
     padding: 0.55rem 0.65rem;
   }

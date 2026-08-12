@@ -100,9 +100,9 @@ export function Showcase() {
             </h3>
             <p>O aplicativo mostra o endereço e inicia a transmissão.</p>
             <DeviceFrame
-              src={`${base}screens/app-host.png`}
+              videoSrc={`${base}demo/android-session.mp4`}
               alt="Tela inicial do Xsharect com o endereço de acesso local"
-              label="host Android"
+              label=""
             />
           </article>
           <aside
@@ -133,7 +133,7 @@ export function Showcase() {
             <DesktopFrame
               videoSrc={`${base}demo/viewer-tabs.mp4`}
               alt="Visualizador web com abas de transmissão, fotos, vídeos e upload"
-              label="visualizador web"
+              label=""
             />
           </article>
         </div>

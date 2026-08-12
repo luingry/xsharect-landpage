@@ -111,12 +111,12 @@
   grid-template-columns: 1fr;
   gap: 0;
   margin-top: 1.35rem;
-  padding-left: 2.1rem;
+  padding-left: 0;
 }
 .route-readout {
   position: relative;
   display: grid;
-  grid-template-columns: 4.5rem minmax(0, 1fr);
+  grid-template-columns: 6.5rem minmax(0, 1fr);
   gap: 0.85rem;
   padding: 1.15rem 0;
 }

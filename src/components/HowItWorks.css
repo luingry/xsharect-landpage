@@ -72,6 +72,11 @@
   border-radius: 50%;
   background: var(--bg);
 }
+@media (max-width: 767px) {
+  .how-step::before {
+    content: none;
+  }
+}
 .how-num {
   color: var(--accent);
   font-family: var(--font-display);

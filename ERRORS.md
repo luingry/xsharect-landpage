@@ -1,5 +1,12 @@
 # Errors and solutions
 
+## Hero link arrow rendered as mojibake (2026-08-12)
+
+- Symptom: The "Ver o produto" link displayed `â†“` instead of a down arrow.
+- Root cause: The UTF-8 arrow character was previously decoded and saved with the wrong encoding.
+- Solution: Render the arrow through the encoding-independent JSX escape `{"\\u2193"}`.
+- Guard: For isolated UI symbols in files that may have encoding churn, prefer Unicode escapes over copy-pasted glyphs.
+
 ## Build failed after motion removal (2026-08-10)
 
 - Symptom: `vite build` failed with `Could not resolve entry module "framer-motion"`.
