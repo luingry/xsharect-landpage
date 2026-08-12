@@ -1,5 +1,12 @@
 # Errors and solutions
 
+## Vercel preview tried to build the `gh-pages` artifact branch (2026-08-12)
+
+- Symptom: Vercel preview deployments for `gh-pages` artifact commits failed, while the production deployment for `main` succeeded.
+- Root cause: The GitHub Pages action publishes only `dist` to `gh-pages`, so Vercel received a static artifact branch without the source files or build dependencies it expects.
+- Solution: Added a Vercel `ignoreCommand` that exits `0` only for `VERCEL_GIT_COMMIT_REF=gh-pages`; placed it both at the source root and in `public/` so Vite copies it into the deployed `dist` artifact.
+- Guard: For repository branches that contain only deployment artifacts, ensure Vercel's skip configuration is itself included in that artifact while leaving source branches buildable.
+
 ## Hero link arrow rendered as mojibake (2026-08-12)
 
 - Symptom: The "Ver o produto" link displayed `â†“` instead of a down arrow.
