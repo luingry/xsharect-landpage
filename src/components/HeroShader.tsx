@@ -6,15 +6,17 @@ const fragmentSource = `
   precision mediump float;
   uniform vec2 u_resolution;
   uniform float u_time;
+  const float TIME_SCALE = 1.75;
   float bands(vec2 p, float time) {
     return sin(p.x * 2.25 + time * .24) * .52 + sin(p.x * 5.1 - p.y * 1.9 - time * .16) * .28 + sin((p.x + p.y) * 3.35 + time * .11) * .2;
   }
   void main() {
     vec2 p = (gl_FragCoord.xy * 2.0 - u_resolution.xy) / min(u_resolution.x, u_resolution.y);
-    float wave = bands(p, u_time);
+    float wave = bands(p, u_time * TIME_SCALE);
     float strata = smoothstep(.14, .88, .5 + .5 * sin(wave * 5.1 + p.y * 4.3));
-    float veil = smoothstep(1.45, -.15, length(p - vec2(.42, -.18)));
-    vec3 tone = mix(vec3(.102, .091, .071), vec3(.43, .19, .075), strata * veil * .30);
+    float aspect = u_resolution.x / u_resolution.y;
+    float veil = smoothstep(1.45, -.15, length(p - vec2(-.55 * max(aspect, 1.0), .18)));
+    vec3 tone = mix(vec3(.088, .076, .056), vec3(.49, .21, .075), strata * veil * .36);
     tone += (fract(sin(dot(gl_FragCoord.xy, vec2(12.9898, 78.233))) * 43758.5453) - .5) * .012;
     gl_FragColor = vec4(tone, .90);
   }

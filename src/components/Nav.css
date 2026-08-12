@@ -3,7 +3,6 @@
   top: 0;
   z-index: 100;
   background: color-mix(in oklch, var(--bg) 94%, transparent);
-  border-bottom: 1px solid color-mix(in oklch, var(--outline) 80%, transparent);
 }
 .nav-inner {
   min-height: 4.25rem;
