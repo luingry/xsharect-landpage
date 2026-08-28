@@ -1,6 +1,6 @@
 {
-  "version_name": "1.33.0",
-  "version_code": 13300,
-  "apk_download_url": "https://luingry.github.io/xsharect-landpage/apk/xsharect-v1.33.0.apk",
-  "release_notes": "### Segurança\n\n- Atualização do app agora consulta exclusivamente o catálogo público de APKs:\n  o token de release do repositório privado deixou de ser incluído no APK e\n  nenhuma chamada de atualização envia autorização ao GitHub. Uma release agora\n  falha se o espelho público não puder ser publicado.\n- Servidor LAN: conexões WebSocket pré-autenticação têm validação de origem,\n  prazo de autenticação e limites de frames, bytes e fragmentos; o salvamento\n  de notas limita e lê o corpo de forma incremental.\n- A chave de assinatura de release deixou o checkout. O CI a materializa\n  temporariamente a partir de secrets, preservando o certificado de atualização\n  já distribuído.\n\n### Melhorado\n\n- Atualizações seguem usando GitHub Pages como fonte principal e o catálogo raw\n  público como fallback; APKs continuam validados contra a assinatura do app\n  antes da instalação.\n- Visualizador de anotações: anexos de documento podem ser excluídos pelo botão\n  X acessível; PDFs ficam legíveis no desktop e abrem em contexto externo em\n  dispositivos de toque. A barra de formatação aproveita melhor o espaço em\n  telas estreitas."
+  "version_name": "1.33.1",
+  "version_code": 13301,
+  "apk_download_url": "https://luingry.github.io/xsharect-landpage/apk/xsharect-v1.33.1.apk",
+  "release_notes": "### Corrigido\n\n- As notas de uma nova versão agora aparecem de forma compacta, sem espaços em branco extras dentro dos itens."
 }
