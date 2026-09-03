@@ -35,9 +35,9 @@
 - Solution: Moved readout parallax to a separate, low-opacity number marker inside each capability. Text wrappers and their `dt`/`dd` remain static while the decorative marker moves.
 - Guard: Do not apply scroll transforms to wrappers that render dense text; use a dedicated decorative layer for parallax.
 
-## Vercel deployment returned 404 for built assets (2026-08-10)
+## Vercel deployment returned 404 for built assets (2026-08-10; regression fixed 2026-09-03)
 
-- Symptom: The landing page deployed to Vercel returned 404s because the generated asset URLs included the GitHub Pages repository prefix.
-- Root cause: Vite used `/xsharect-landpage/` as its base for every environment, while a Vercel project is served from `/`.
-- Solution: Detect the Vercel build environment through `VERCEL` or `VERCEL_ENV` and set Vite's base to `/`; retain `/xsharect-landpage/` everywhere else for GitHub Pages.
-- Guard: When a Vite app serves from more than one host root, make the build base explicit per deployment environment and verify the generated asset paths.
+- Symptom: The Vercel custom domain loaded its HTML but all JavaScript and CSS requests below `/xsharect-landpage/assets/` returned 404, leaving the React root empty.
+- Root cause: A later `main` commit restored a fixed GitHub Pages Vite base, replacing the environment-aware configuration. Vercel serves the custom domain from `/`, while GitHub Pages serves it below `/xsharect-landpage/`.
+- Solution: Detect the Vercel build environment through `VERCEL=1` or `VERCEL_ENV` and set Vite's base to `/`; retain `/xsharect-landpage/` everywhere else for GitHub Pages.
+- Guard: For every Vite base-path change, run both the ordinary Pages build and `VERCEL=1 npm run build`, then inspect their generated asset paths before publishing.
