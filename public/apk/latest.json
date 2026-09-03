@@ -1,6 +1,6 @@
 {
-  "version_name": "1.34.2",
-  "version_code": 13402,
-  "apk_download_url": "https://luingry.github.io/xsharect-landpage/apk/xsharect-v1.34.2.apk",
-  "release_notes": "### Corrigido\n\n- Com notas de atualização longas, o progresso e o status do download continuam\n  visíveis durante a atualização."
+  "version_name": "1.35.0",
+  "version_code": 13500,
+  "apk_download_url": "https://luingry.github.io/xsharect-landpage/apk/xsharect-v1.35.0.apk",
+  "release_notes": "### Adicionado\n\n- Viewer desktop: captura de screenshot e gravação da transmissão, com controles\n  exibidos durante a visualização.\n- Aba **Arquivos** no viewer para navegar pelos arquivos do dispositivo, ver\n  prévias de imagens, enviar itens e baixar arquivos selecionados.\n\n### Corrigido\n\n- Downloads do viewer agora entram no gerenciador e no histórico de Downloads\n  do navegador desktop ao serem concluídos.\n- O servidor do roadmap local volta a iniciar corretamente pelo comando npm no\n  Windows.\n\n### Segurança\n\n- Navegação e download de arquivos externos validam caminhos canônicos dentro\n  do armazenamento compartilhado do dispositivo; ZIPs permanecem limitados."
 }
