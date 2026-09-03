@@ -12,7 +12,7 @@ export function Nav() {
             aria-label="Xsharect, início"
           >
             <img
-              src={`${import.meta.env.BASE_URL}icon-512.png`}
+              src={`${import.meta.env.BASE_URL}xsharect-mark.svg`}
               alt=""
               width={32}
               height={32}

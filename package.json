@@ -8,6 +8,7 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "smoke": "node scripts/smoke.mjs",
+    "icons:check": "node scripts/gen-brand-icons.mjs --check",
     "capture:screens": "node scripts/capture-marketing-screens.mjs",
     "capture:demo": "node scripts/capture-demo-frames.mjs",
     "demo:render": "npm run render --prefix remotion",

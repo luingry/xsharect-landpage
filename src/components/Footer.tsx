@@ -10,7 +10,7 @@ export function Footer() {
         <div className="footer-inner span-12">
           <div className="footer-brand">
             <img
-              src={`${import.meta.env.BASE_URL}icon-512.png`}
+              src={`${import.meta.env.BASE_URL}xsharect-mark.svg`}
               alt=""
               width={28}
               height={28}

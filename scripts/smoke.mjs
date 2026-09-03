@@ -17,6 +17,10 @@ const required = [
   'demo/xsharect-demo.mp4',
   'screens/app-host.png',
   'screens/viewer-desktop.png',
+  'xsharect-mark.svg',
+  'favicon-32.png',
+  'favicon-192.png',
+  'apple-touch-icon.png',
   'icon-512.png',
 ];
 
