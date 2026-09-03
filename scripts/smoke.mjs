@@ -16,6 +16,9 @@ const required = [
   'demo/xsharect-demo.mp4',
   'screens/app-host.png',
   'screens/viewer-desktop.png',
+  'favicon-32.png',
+  'favicon-192.png',
+  'apple-touch-icon.png',
   'icon-512.png',
 ];
 
@@ -35,6 +38,23 @@ for (const rel of required) {
 const indexHtml = fs.readFileSync(path.join(DIST, 'index.html'), 'utf8');
 if (!indexHtml.includes('/xsharect-landpage/')) {
   console.error('FAIL: index.html missing base path /xsharect-landpage/');
+  failed = true;
+}
+
+const requiredBrandPaths = [
+  '/xsharect-landpage/favicon-32.png',
+  '/xsharect-landpage/favicon-192.png',
+  '/xsharect-landpage/apple-touch-icon.png',
+];
+for (const assetPath of requiredBrandPaths) {
+  if (!indexHtml.includes(assetPath)) {
+    console.error(`FAIL: index.html missing base-aware brand path ${assetPath}`);
+    failed = true;
+  }
+}
+const rootBrandPath = /(?:href|src)=["']\/(?:favicon-32\.png|favicon-192\.png|apple-touch-icon\.png|xsharect-mark\.svg)["']/;
+if (rootBrandPath.test(indexHtml)) {
+  console.error('FAIL: index.html contains a root-relative brand path that breaks GitHub Pages subpaths');
   failed = true;
 }
 
