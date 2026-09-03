@@ -1,163 +1,69 @@
-import { useEffect, useRef } from "react";
-import { DesktopFrame } from "./DesktopFrame";
-import { DeviceFrame } from "./DeviceFrame";
-import { Reveal } from "./Reveal";
-import { CapabilityIcon, type CapabilityKind } from "./CapabilityIcon";
-import "./Showcase.css";
+import { Reveal } from './Reveal';
+import { DeviceFrame } from './DeviceFrame';
+import { DesktopFrame } from './DesktopFrame';
+import './Showcase.css';
 
 const base = import.meta.env.BASE_URL;
 
-const readouts: Array<{ kind: CapabilityKind; title: string; body: string }> = [
+const features = [
   {
-    kind: "stream",
-    title: "Transmissão contínua",
-    body: "Transmissão H.264 pela rede local, com baixa latência e reconexão automática.",
+    title: 'Transmissão H.264',
+    body: 'Vídeo em tempo real na mesma rede, com baixa latência e reconexão automática.',
   },
   {
-    kind: "control",
-    title: "Controle remoto",
-    body: "Controle o Android por toques e pelos botões de navegação quando a permissão estiver ativa.",
+    title: 'Controle por toque',
+    body: 'Toque remoto, voltar, início e recentes — direto do navegador.',
   },
   {
-    kind: "access",
-    title: "Acesso protegido",
-    body: "Use uma senha opcional para proteger a sessão local quando necessário.",
+    title: 'Senha opcional',
+    body: 'Proteja a sessão na LAN ou deixe aberto na rede de confiança.',
   },
   {
-    kind: "media",
-    title: "Mídias e arquivos",
-    body: "Veja fotos e vídeos ou envie arquivos pelo próprio visualizador.",
+    title: 'Galeria e upload',
+    body: 'Fotos, vídeos e envio de arquivos pelo visualizador web.',
   },
 ];
 
 export function Showcase() {
-  const routeRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const route = routeRef.current;
-    if (!route || window.matchMedia("(prefers-reduced-motion: reduce)").matches)
-      return;
-    let inView = false;
-    const update = () =>
-      route.classList.toggle("route-is-active", inView && !document.hidden);
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        inView = entry.isIntersecting;
-        update();
-      },
-      { threshold: 0.16 },
-    );
-    observer.observe(route);
-    document.addEventListener("visibilitychange", update);
-    return () => {
-      observer.disconnect();
-      document.removeEventListener("visibilitychange", update);
-    };
-  }, []);
-
   return (
-    <section
-      id="produto"
-      className="showcase section"
-      aria-labelledby="showcase-title"
-      ref={routeRef}
-    >
+    <section id="produto" className="showcase section" aria-labelledby="showcase-title">
       <div className="container">
         <Reveal className="showcase-intro span-12">
-          <p className="eyebrow">Uma sessão na rede local</p>
+          <p className="eyebrow">Dois lados, um produto</p>
           <h2 id="showcase-title" className="section-title">
-            O Android inicia. O navegador acompanha.
+            App host e visualizador web
           </h2>
           <p className="section-lead">
-            Inicie no telefone, abra o endereço mostrado e acompanhe em outro
-            dispositivo da mesma rede, sem criar uma conta.
+            O Android captura e transmite. Qualquer navegador na LAN assiste e controla.
+            Mesma identidade visual, mesma sessão.
           </p>
         </Reveal>
 
-        <div className="signal-route span-12">
-          <svg
-            className="route-wire"
-            viewBox="0 0 1000 400"
-            preserveAspectRatio="none"
-            aria-hidden="true"
-          >
-            <path
-              className="route-line"
-              d="M112 150 C260 150 298 84 440 84 S650 286 884 286"
-            />
-            <path
-              className="route-pulse"
-              d="M112 150 C260 150 298 84 440 84 S650 286 884 286"
-              pathLength="1"
-            />
-          </svg>
-          <article className="route-station route-station-android">
-            <p className="station-index">[ A ]</p>
-            <h3>
-              Android
-              <br />
-              inicia a sessão
-            </h3>
-            <p>O aplicativo mostra o endereço e inicia a transmissão.</p>
+        <div className="showcase-frames span-12">
+          <Reveal delay={0.1}>
             <DeviceFrame
-              videoSrc={`${base}demo/android-session.mp4`}
-              alt="Tela inicial do Xsharect com o endereço de acesso local"
-              label=""
+              src={`${base}screens/app-host.png`}
+              alt="Interface do app Xsharect no Android"
+              label="App Android — host"
             />
-          </article>
-          <aside
-            className="route-station route-station-lan"
-            aria-label="Etapa LAN"
-          >
-            <p className="station-index">[ B ]</p>
-            <h3>
-              Rede local
-              <br />
-              conecta os dispositivos
-            </h3>
-            <p>
-              Digite o endereço em outro dispositivo conectado à mesma rede.
-            </p>
-          </aside>
-          <article className="route-station route-station-browser">
-            <p className="station-index">[ C ]</p>
-            <h3>
-              Navegador
-              <br />
-              exibe a transmissão
-            </h3>
-            <p>
-              Transmissão ao vivo, fotos, vídeos e envio de arquivos na mesma
-              sessão.
-            </p>
+          </Reveal>
+          <Reveal delay={0.2}>
             <DesktopFrame
               videoSrc={`${base}demo/viewer-tabs.mp4`}
-              alt="Visualizador web com abas de transmissão, fotos, vídeos e upload"
-              label=""
+              alt="Visualizador web navegando entre abas Live, Fotos, Vídeos e Upload"
+              label="Visualizador web — viewer"
             />
-          </article>
+          </Reveal>
         </div>
 
-        <div className="readout-heading span-12" aria-hidden="true">
-          <span>Capacidades na mesma sessão</span>
-        </div>
-        <dl className="route-readouts span-12">
-          {readouts.map(({ kind, title, body }) => (
-            <Reveal
-              key={kind}
-              className={`route-readout route-readout-${kind}`}
-            >
-              <span className="route-readout-mark" aria-hidden="true">
-                <CapabilityIcon kind={kind} />
-              </span>
-              <dt>
-                <CapabilityIcon className="tap-icon" kind={kind} />
-                <strong>{title}</strong>
-              </dt>
-              <dd>{body}</dd>
+        <div className="showcase-grid span-12">
+          {features.map((f, i) => (
+            <Reveal key={f.title} delay={0.05 * i} className="showcase-card col-span-3">
+              <h3 className="showcase-card-title">{f.title}</h3>
+              <p className="showcase-card-body">{f.body}</p>
             </Reveal>
           ))}
-        </dl>
+        </div>
       </div>
     </section>
   );

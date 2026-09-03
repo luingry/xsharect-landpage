@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Xsharect canonical Shared Window mark. Keep its geometry synchronized with the app source. -->
+<!--
+  Xsharect canonical mark — two overlapping viewports linked by a bidirectional
+  exchange. Keep the viewBox and transparent background: generated icons add
+  their own safe-area treatment for each platform.
+-->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none" role="img" aria-labelledby="title">
   <title id="title">Xsharect shared window mark</title>
+  <!-- One fused ribbon. The two broad negative cavities preserve the screen
+       reading; their opposing diagonals form the exchange X without a block. -->
   <path fill="#C15F3C" fill-rule="evenodd" d="M112 92H304c31 0 56 25 56 56v63c0 15 12 27 27 27h25c37 0 67 30 67 67v103c0 40-32 72-72 72H254c-31 0-56-25-56-56v-6c0-16-13-29-29-29h-57c-43 0-78-35-78-78V170c0-43 35-78 78-78Zm24 74c-15 0-28 13-28 28v130c0 15 13 28 28 28h82c13 0 20-4 29-13l22-22c9-9 9-20 0-29l-48-48c-11-11-11-27 0-38 5-5 12-8 20-8h91c15 0 27-12 27-27s-12-27-27-27H136Zm242 120h56c15 0 28 13 28 28v84c0 15-13 28-28 28H292c-12 0-22-7-27-18-5-10-2-21 6-29l49-49c9-9 9-20 0-29l-8-8c-8-8-11-19-6-29 5-10 15-17 27-17h21Z"/>
 </svg>

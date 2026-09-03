@@ -1,453 +1,67 @@
-.showcase {
-  position: relative;
-  background: var(--surface);
-  overflow: clip;
+.section {
+  padding-block: var(--section-py);
 }
-.showcase::before,
-.showcase::after {
-  content: "";
-  position: absolute;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0;
-}
-.showcase::before {
-  width: 28rem;
-  height: 28rem;
-  right: -16rem;
-  top: 15rem;
-  border: 1px solid var(--outline);
-  border-radius: 50%;
-  box-shadow:
-    0 0 0 2.5rem var(--surface),
-    0 0 0 calc(2.5rem + 1px) var(--outline);
-}
-.showcase::after {
-  content: "PORT 9240  ·  SESSION LOCAL  ·  PORT 9240";
-  right: -10rem;
-  bottom: 20rem;
-  color: var(--text-faint);
-  font-size: 0.62rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  transform: rotate(-90deg);
-  transform-origin: center;
-}
-.showcase .container {
-  position: relative;
-  z-index: 1;
-}
+
 .showcase-intro {
-  max-width: 52rem;
+  text-align: center;
+  max-width: 42rem;
+  margin-inline: auto;
 }
-.showcase-intro .section-title {
-  max-width: 14ch;
+
+.showcase-intro .section-lead {
+  margin-inline: auto;
 }
-.signal-route {
-  position: relative;
-  display: grid;
-  gap: 3rem;
-  margin-top: clamp(3.5rem, 9vw, 7rem);
-}
-.route-wire {
-  display: none;
-}
-.route-station {
-  position: relative;
-  z-index: 1;
-}
-.route-station h3 {
-  margin: 0.45rem 0 0.8rem;
-  font-family: var(--font-display);
-  font-size: clamp(1.45rem, 2.2vw, 2.2rem);
-  font-weight: 400;
-  line-height: 0.94;
-  letter-spacing: -0.055em;
-}
-.route-station > p:not(.station-index) {
-  max-width: 27ch;
-  margin: 0;
-  color: var(--text-soft);
-  font-size: 0.9rem;
-  line-height: 1.58;
-}
-.station-index {
-  margin: 0;
-  color: var(--accent);
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-}
-.route-station .device-frame {
-  margin-top: 1.5rem;
-  align-items: flex-start;
-}
-.route-station .device-shell {
-  margin-left: 1rem;
-}
-.route-station .device-caption,
-.route-station .desktop-caption {
-  text-align: left;
-}
-.route-station-browser .desktop-frame {
-  margin-top: 1.5rem;
-  align-items: flex-start;
-}
-.route-station-lan {
-  padding: 1.5rem 0 1.55rem 2rem;
-  border-block: 1px solid var(--outline);
-}
-.readout-heading {
-  margin-top: clamp(4.5rem, 10vw, 8rem);
-  color: var(--text-faint);
-  font-size: 0.69rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-.route-readouts {
-  position: relative;
+
+.showcase-frames {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0;
-  margin-top: 1.35rem;
-  padding-left: 0;
+  gap: 3rem;
+  margin: 2.5rem 0 3.5rem;
+  align-items: end;
+  justify-items: center;
 }
-.route-readout {
-  position: relative;
-  display: grid;
-  grid-template-columns: 6.5rem minmax(0, 1fr);
-  gap: 0.85rem;
-  padding: 1.15rem 0;
-}
-.route-readout-mark {
-  position: absolute;
-  top: 0.35rem;
-  right: 0.15rem;
-  z-index: 0;
-  color: var(--accent);
-  opacity: 0.12;
-  pointer-events: none;
-}
-.route-readout-mark svg {
-  display: block;
-  width: clamp(3.4rem, 15vw, 5.2rem);
-  height: auto;
-}
-.route-readout dt {
-  display: grid;
-  gap: 0.25rem;
-  align-content: start;
-  position: relative;
-  z-index: 1;
-}
-.tap-icon {
-  color: var(--accent);
-  width: 1.35rem;
-  height: 1.35rem;
-  flex: none;
-}
-.route-readout dt strong {
-  font-size: 1rem;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-}
-.route-readout dd {
-  max-width: 39ch;
-  margin: 0;
-  color: var(--text-soft);
-  font-size: 0.89rem;
-  line-height: 1.55;
-  position: relative;
-  z-index: 1;
-}
-@media (min-width: 760px) {
-  .signal-route {
-    min-height: 42rem;
-    grid-template-columns: 1fr 0.9fr 1.3fr;
-    align-items: start;
-    column-gap: clamp(1rem, 4vw, 4rem);
-  }
-  .route-wire {
-    position: absolute;
-    display: block;
-    inset: 3.5rem 1rem auto;
-    width: calc(100% - 2rem);
-    height: 24rem;
-    overflow: visible;
-  }
-  .route-line {
-    fill: none;
-    stroke: var(--outline);
-    stroke-width: 1.35;
-    vector-effect: non-scaling-stroke;
-  }
-  .route-pulse {
-    fill: none;
-    stroke: var(--accent);
-    stroke-width: 2.25;
-    vector-effect: non-scaling-stroke;
-    stroke-dasharray: 0.025 0.975;
-    stroke-dashoffset: 1;
-    opacity: 0;
-  }
-  .route-is-active .route-pulse {
-    animation: route-travel 4.8s linear infinite;
-    opacity: 0.9;
-  }
-  .route-station-android {
-    margin-top: 3.7rem;
-  }
-  .route-station-lan {
-    margin-top: 0;
-    padding: 2rem 0 2rem 1.5rem;
-    border-block: 0;
-  }
-  .route-station-browser {
-    margin-top: 15.2rem;
-  }
-  .route-station .device-shell {
-    margin-left: 0;
-  }
-  .route-readouts {
-    min-height: 12rem;
+
+@media (min-width: 900px) {
+  .showcase-frames {
     grid-template-columns: repeat(12, minmax(0, 1fr));
-    grid-template-rows: 1fr;
-    gap: 0;
-    margin-top: 2rem;
-    padding: 0;
+    gap: clamp(1rem, 2vw, 1.5rem);
+    align-items: end;
   }
-  .route-readout {
-    z-index: 1;
-    display: block;
-    padding: 0;
-    border: 0;
+
+  .showcase-frames > :first-child {
+    grid-column: span 5;
   }
-  .route-readout-mark {
-    top: -0.5rem;
-    right: 0;
-    opacity: 0.1;
-  }
-  .route-readout-mark svg {
-    width: clamp(4rem, 7vw, 6.2rem);
-  }
-  .route-readout dt {
-    display: flex;
-    align-items: baseline;
-    gap: 0.65rem;
-  }
-  .tap-icon {
-    width: 1.6rem;
-    height: 1.6rem;
-  }
-  .route-readout dt strong {
-    max-width: 8ch;
-    font-size: 1.08rem;
-  }
-  .route-readout dd {
-    margin-top: 0.7rem;
-  }
-  .route-readout-stream {
-    grid-column: 1 / span 3;
-    grid-row: 1;
-    align-self: end;
-  }
-  .route-readout-control {
-    grid-column: 4 / span 3;
-    grid-row: 1;
-    align-self: end;
-  }
-  .route-readout-access {
-    grid-column: 7 / span 3;
-    grid-row: 1;
-    align-self: end;
-  }
-  .route-readout-media {
-    grid-column: 10 / span 3;
-    grid-row: 1;
-    align-self: end;
+
+  .showcase-frames > :last-child {
+    grid-column: span 7;
   }
 }
-@keyframes route-travel {
-  to {
-    stroke-dashoffset: -0.025;
-  }
+
+.showcase-grid {
+  display: contents;
 }
-@media (prefers-reduced-motion: reduce) {
-  .route-pulse {
-    display: none;
-  }
+
+.showcase-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 9.5rem;
+  padding: 1.5rem;
+  border-radius: 18px;
+  background: var(--surface);
+  border: 1px solid var(--outline);
 }
-@media (prefers-reduced-motion: no-preference) {
-  @supports (animation-timeline: view()) {
-    .showcase::before {
-      animation: technical-arc linear both;
-      animation-timeline: view(block);
-      animation-range: entry 0% exit 100%;
-    }
-    .showcase::after {
-      animation: technical-port linear both;
-      animation-timeline: view(block);
-      animation-range: entry 8% exit 92%;
-    }
-    .route-station-android {
-      animation: station-near linear both;
-      animation-timeline: view(block);
-      animation-range: entry 8% exit 92%;
-    }
-    .route-station-lan {
-      animation: station-fixed linear both;
-      animation-timeline: view(block);
-      animation-range: entry 8% exit 92%;
-    }
-    .route-station-browser {
-      animation: station-far linear both;
-      animation-timeline: view(block);
-      animation-range: entry 8% exit 92%;
-    }
-    .route-readout-stream .route-readout-mark,
-    .route-readout-access .route-readout-mark {
-      animation: readout-mark-left linear both;
-      animation-timeline: view(block);
-      animation-range: entry 15% exit 88%;
-    }
-    .route-readout-control .route-readout-mark,
-    .route-readout-media .route-readout-mark {
-      animation: readout-mark-right linear both;
-      animation-timeline: view(block);
-      animation-range: entry 15% exit 88%;
-    }
-  }
+
+.showcase-card-title {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
-@keyframes technical-arc {
-  from {
-    transform: translate3d(0, 24px, 0);
-    opacity: 0;
-  }
-  20%,
-  78% {
-    opacity: 0.33;
-  }
-  to {
-    transform: translate3d(0, -24px, 0);
-    opacity: 0;
-  }
-}
-@keyframes technical-port {
-  from {
-    transform: translate3d(0, 18px, 0) rotate(-90deg);
-    opacity: 0;
-  }
-  25%,
-  72% {
-    opacity: 0.45;
-  }
-  to {
-    transform: translate3d(0, -18px, 0) rotate(-90deg);
-    opacity: 0;
-  }
-}
-@keyframes station-near {
-  from {
-    transform: translate3d(0, 24px, 0);
-  }
-  to {
-    transform: translate3d(0, -24px, 0);
-  }
-}
-@keyframes station-fixed {
-  from {
-    transform: translate3d(0, 8px, 0);
-  }
-  to {
-    transform: translate3d(0, -8px, 0);
-  }
-}
-@keyframes station-far {
-  from {
-    transform: translate3d(0, -18px, 0);
-  }
-  to {
-    transform: translate3d(0, 18px, 0);
-  }
-}
-@keyframes readout-mark-left {
-  from {
-    transform: translate3d(-14px, 12px, 0) rotate(-2deg);
-  }
-  to {
-    transform: translate3d(14px, -12px, 0) rotate(2deg);
-  }
-}
-@keyframes readout-mark-right {
-  from {
-    transform: translate3d(14px, 10px, 0) rotate(2deg);
-  }
-  to {
-    transform: translate3d(-14px, -10px, 0) rotate(-2deg);
-  }
-}
-@media (max-width: 759px) and (prefers-reduced-motion: no-preference) {
-  @supports (animation-timeline: view()) {
-    .showcase::after {
-      display: none;
-    }
-    .route-station-android {
-      animation-name: station-near-mobile;
-    }
-    .route-station-lan {
-      animation-name: station-fixed-mobile;
-    }
-    .route-station-browser {
-      animation-name: station-far-mobile;
-    }
-    .route-readout-stream .route-readout-mark,
-    .route-readout-access .route-readout-mark {
-      animation-name: readout-mark-left-mobile;
-    }
-    .route-readout-control .route-readout-mark,
-    .route-readout-media .route-readout-mark {
-      animation-name: readout-mark-right-mobile;
-    }
-  }
-}
-@keyframes station-near-mobile {
-  from {
-    transform: translate3d(0, 10px, 0);
-  }
-  to {
-    transform: translate3d(0, -10px, 0);
-  }
-}
-@keyframes station-fixed-mobile {
-  from {
-    transform: translate3d(0, 4px, 0);
-  }
-  to {
-    transform: translate3d(0, -4px, 0);
-  }
-}
-@keyframes station-far-mobile {
-  from {
-    transform: translate3d(0, -8px, 0);
-  }
-  to {
-    transform: translate3d(0, 8px, 0);
-  }
-}
-@keyframes readout-mark-left-mobile {
-  from {
-    transform: translate3d(-6px, 6px, 0);
-  }
-  to {
-    transform: translate3d(6px, -6px, 0);
-  }
-}
-@keyframes readout-mark-right-mobile {
-  from {
-    transform: translate3d(6px, 5px, 0);
-  }
-  to {
-    transform: translate3d(-6px, -5px, 0);
-  }
+
+.showcase-card-body {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--text-muted);
 }

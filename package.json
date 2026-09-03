@@ -8,15 +8,14 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "smoke": "node scripts/smoke.mjs",
-    "icons:check": "node scripts/gen-brand-icons.mjs --check",
     "capture:screens": "node scripts/capture-marketing-screens.mjs",
     "capture:demo": "node scripts/capture-demo-frames.mjs",
     "demo:render": "npm run render --prefix remotion",
     "viewer:render": "npm run render:viewer-tabs --prefix remotion"
   },
   "dependencies": {
-    "@fontsource-variable/public-sans": "^5.3.0",
-    "@fontsource/archivo-black": "^5.3.0",
+    "@fontsource-variable/outfit": "^5.2.5",
+    "framer-motion": "^12.4.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
