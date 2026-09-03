@@ -35,9 +35,9 @@
 - Solution: Moved readout parallax to a separate, low-opacity number marker inside each capability. Text wrappers and their `dt`/`dd` remain static while the decorative marker moves.
 - Guard: Do not apply scroll transforms to wrappers that render dense text; use a dedicated decorative layer for parallax.
 
-## Vercel deployment returned 404 for built assets (2026-08-10; regression fixed 2026-09-03)
+## Vercel deployment returned 404 for built assets (2026-08-10; regression guarded 2026-09-03)
 
 - Symptom: The Vercel custom domain loaded its HTML but all JavaScript and CSS requests below `/xsharect-landpage/assets/` returned 404, leaving the React root empty.
-- Root cause: A later `main` commit restored a fixed GitHub Pages Vite base, replacing the environment-aware configuration. Vercel serves the custom domain from `/`, while GitHub Pages serves it below `/xsharect-landpage/`.
-- Solution: Detect the Vercel build environment through `VERCEL=1` or `VERCEL_ENV` and set Vite's base to `/`; retain `/xsharect-landpage/` everywhere else for GitHub Pages.
-- Guard: For every Vite base-path change, run both the ordinary Pages build and `VERCEL=1 npm run build`, then inspect their generated asset paths before publishing.
+- Root cause: The site is generated from a seed that hardcodes the GitHub Pages base. Vercel serves the custom domain from `/`, while GitHub Pages serves it below `/xsharect-landpage/`; a seed refresh therefore produced broken root-domain asset URLs.
+- Solution: Preserve the GitHub Pages base in source, but make Vercel's root `vercel.json` override its build with `npm run build -- --base=/`. The Vite CLI option takes precedence over the seed configuration and the root configuration is not replaced by the seed refresh.
+- Guard: For every Vite base-path change, run the ordinary Pages build and the Vercel-equivalent `npm run build -- --base=/`, then inspect both generated asset paths before publishing. Keep `public/vercel.json` limited to the `gh-pages` ignore rule: it is copied into the static artifact for that branch and never performs its own build.
