@@ -1,6 +1,6 @@
 {
-  "version_name": "1.43.1",
-  "version_code": 14301,
-  "apk_download_url": "https://luingry.github.io/xsharect-landpage/apk/xsharect-v1.43.1.apk",
-  "release_notes": "### Corrigido\n\n- O viewer ganhou ícones nas abas do topo. Em celulares, apenas a aba ativa\n  mostra texto, a lista de Arquivos está mais larga e o nome/modelo do dispositivo\n  aparece menor e contido.\n- Os botões de Disconnect do topbar e do popup de conexão perdida permanecem ocultos\n  somente para sessões confirmadas como automáticas e sem senha, e continuam\n  disponíveis para sessões protegidas ou de origem desconhecida.\n- A notificação em primeiro plano do Android agora usa “O Xsharect está\n  compartilhando sua tela” apenas enquanto o encoder de captura estiver ativo;\n  fora disso, permanece neutra: “O Xsharect está conectado”."
+  "version_name": "1.43.2",
+  "version_code": 14302,
+  "apk_download_url": "https://luingry.github.io/xsharect-landpage/apk/xsharect-v1.43.2.apk",
+  "release_notes": "### Corrigido\n\n- No viewer mobile, o modelo técnico do dispositivo agora aparece abaixo do nome\n  público, com tipografia subordinada e truncamento seguro. A aba Anotações se\n  une ao painel sem o vão no canto superior direito."
 }
