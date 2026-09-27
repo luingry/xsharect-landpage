@@ -41,3 +41,15 @@
 - Root cause: The site is generated from a seed that hardcodes the GitHub Pages base. Vercel serves the custom domain from `/`, while GitHub Pages serves it below `/xsharect-landpage/`; a seed refresh therefore produced broken root-domain asset URLs.
 - Solution: Preserve the GitHub Pages base in source, but make Vercel's root `vercel.json` override its build with `npm run build -- --base=/`. The Vite CLI option takes precedence over the seed configuration and the root configuration is not replaced by the seed refresh.
 - Guard: For every Vite base-path change, run the ordinary Pages build and the Vercel-equivalent `npm run build -- --base=/`, then inspect both generated asset paths before publishing. Keep `public/vercel.json` limited to the `gh-pages` ignore rule: it is copied into the static artifact for that branch and never performs its own build.
+
+## `vite build` falha com `EPERM: operation not permitted, lstat 'dist\videos\*.mp4'` (2026-09-27)
+- Root cause: no Windows, `vite preview` mantém os MP4 de `dist/` abertos (streaming
+  com range requests); o build não consegue limpar `dist/`.
+- Solution: pare o `vite preview` antes de rodar `npm run build`. Para QA
+  iterativa, use `npm run dev` (serve `public/` direto, sem travar `dist/`).
+
+
+## `@import "@phosphor-icons/web/src/..."` não resolve (2026-09-27)
+- **Causa:** o pacote só expõe subpaths via `exports` (`@phosphor-icons/web/regular`).
+- **Solução adotada:** trocamos a fonte de ícones por SVGs de `@phosphor-icons/core`
+  importados com `?raw` em `src/icons.ts` (evita ~150KB de fonte + 76KB de CSS).

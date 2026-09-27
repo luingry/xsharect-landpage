@@ -1,20 +1,321 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="xsharect — compartilhe a tela do Android na LAN e controle o dispositivo pelo navegador. Sem nuvem, sem conta."
-    />
-    <link rel="canonical" href="https://luingry.github.io/xsharect-landpage/" />
-    <link rel="icon" type="image/png" sizes="32x32" href="%BASE_URL%favicon-32.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="%BASE_URL%favicon-192.png" />
-    <link rel="apple-touch-icon" href="%BASE_URL%apple-touch-icon.png" />
-    <title>xsharect — tela Android na LAN</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>xSharect | Controle o Android pelo navegador</title>
+  <meta name="description" content="Espelhe e controle o Android pelo navegador, direto na sua rede local. Gratuito, sem conta e sem nuvem." />
+  <meta name="theme-color" content="#0b0a09" />
+  <meta property="og:title" content="xSharect | Controle o Android pelo navegador" />
+  <meta property="og:description" content="Espelhe e controle o Android pelo navegador, direto na sua rede local. Gratuito, sem conta e sem nuvem." />
+  <meta property="og:image" content="brand/icon-512.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="brand/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="brand/favicon-192.png" />
+  <link rel="apple-touch-icon" href="brand/apple-touch-icon.png" />
+  <link rel="preload" as="image" href="videos/hero-desktop-poster.webp" />
+</head>
+<body>
+  <a class="skip" href="#main">Pular para o conteúdo</a>
+
+  <div class="rail" aria-hidden="true">
+    <div class="rail__track"></div>
+    <div class="rail__marks"></div>
+    <div class="rail__thumb"><span class="rail__pct">0%</span></div>
+  </div>
+
+  <header class="nav" data-nav>
+    <a class="brand" href="#top" aria-label="xSharect, início">
+      <img class="logo" src="brand/mark.png" width="28" height="28" alt="" />
+      <span>xSharect</span>
+    </a>
+    <nav class="nav__links" aria-label="Seções">
+      <a href="#overview">Visão geral</a>
+      <a href="#how">Como funciona</a>
+      <a href="#control">Controle</a>
+      <a href="#security">Privacidade</a>
+      <a href="#faq">Dúvidas</a>
+    </nav>
+    <a class="btn btn--sm btn--accent" href="#download" data-magnetic>
+      <i class="ph ph-download-simple" aria-hidden="true"></i><span>Baixar APK</span>
+    </a>
+  </header>
+
+  <main id="main">
+    <!-- HERO: asymmetric split, liquid shader behind -->
+    <section class="hero" id="top" data-section="Início">
+      <canvas class="hero__shader" data-shader aria-hidden="true"></canvas>
+      <div class="hero__veil" aria-hidden="true"></div>
+      <div class="grain grain--hero" aria-hidden="true"></div>
+
+      <div class="hero__grid">
+        <div class="hero__copy" data-hero-copy>
+          <h1 class="hero__title" aria-label="Controle o seu Android pelo navegador">
+            <span class="line"><span class="line__in" data-hero-line>Controle o seu Android</span></span>
+            <span class="line"><span class="line__in" data-hero-line>pelo <em>navegador</em></span></span>
+          </h1>
+          <div class="hero__ctas" data-hero-in>
+            <a class="btn btn--accent btn--lg" href="#download" data-magnetic>
+              <i class="ph ph-download-simple" aria-hidden="true"></i><span>Baixar APK</span>
+            </a>
+            <a class="btn btn--ghost btn--lg" href="#overview" data-magnetic>
+              <i class="ph ph-play" aria-hidden="true"></i><span>Ver em ação</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero__stage" data-hero-stage aria-hidden="true">
+          <figure class="browser" data-depth="0.35">
+            <div class="browser__bar"><span></span><span></span><span></span><p>https://192.168.0.42:9240</p></div>
+            <video class="browser__screen" muted loop playsinline autoplay preload="auto"
+              src="videos/hero-desktop.mp4" poster="videos/hero-desktop-poster.webp"></video>
+          </figure>
+          <div class="beam" data-depth="0.6"><span></span></div>
+          <figure class="phone" data-depth="0.9">
+            <video class="phone__screen" muted loop playsinline autoplay preload="auto"
+              src="videos/hero-phone.mp4" poster="videos/hero-phone-poster.webp"></video>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- OVERVIEW: pinned portal that expands the film -->
+    <section class="portal" id="overview" data-section="Visão geral">
+      <div class="portal__stage">
+        <p class="portal__word" aria-hidden="true" data-portal-word>Veja em <em>movimento</em></p>
+        <div class="portal__frame" data-portal>
+          <video class="vid" muted loop playsinline preload="none"
+            data-src="videos/s1-overview.mp4" poster="videos/s1-overview-poster.webp"
+            aria-label="Visão geral do xSharect: transmissão, controle, clipboard e arquivos"></video>
+        </div>
+        <p class="portal__caption" data-portal-cap>Um passeio pelo app e pelo visualizador, do toque em <b>Transmitir</b> ao envio de arquivos.</p>
+      </div>
+    </section>
+
+    <!-- MANIFESTO: scroll-scrubbed words -->
+    <section class="manifesto" data-section="Manifesto">
+      <p class="manifesto__text" data-words>
+        O próprio celular faz o papel de servidor. Qualquer navegador da mesma rede
+        abre o endereço mostrado no app e recebe a tela, sem cabo, sem cadastro e sem passar pela nuvem.
+      </p>
+    </section>
+
+    <!-- HOW: sticky visual + scrolling steps with real screens -->
+    <section class="how" id="how" data-section="Como funciona">
+      <span class="bgicon bgicon--left" data-bgicon="broadcast" aria-hidden="true"></span>
+      <div class="wrap">
+        <header class="sechead" data-reveal>
+          <span class="eyebrow">Como funciona</span>
+          <h2 class="h2">Do app ao navegador em <em>três passos</em></h2>
+        </header>
+
+        <div class="how__grid">
+          <div class="how__visual" data-how-visual data-step="1" aria-hidden="true">
+            <figure class="shot shot--phone" data-shot="1"><img src="shots/app-home.webp" alt="" loading="lazy" decoding="async" /></figure>
+            <figure class="shot shot--web" data-shot="2"><img src="shots/viewer-auth.webp" alt="" loading="lazy" decoding="async" /></figure>
+            <figure class="shot shot--web" data-shot="3"><img src="shots/viewer-stream.webp" alt="" loading="lazy" decoding="async" /></figure>
+            <div class="how__progress"><span></span></div>
+          </div>
+
+          <ol class="how__steps">
+            <li class="step" data-step-trigger="1">
+              <i class="ph ph-broadcast step__ic" aria-hidden="true"></i>
+              <h3>Toque em Transmitir</h3>
+              <p>Abra o xSharect no Android, defina uma senha se quiser e autorize a captura de tela. O próprio celular passa a servir o visualizador.</p>
+            </li>
+            <li class="step" data-step-trigger="2">
+              <i class="ph ph-browser step__ic" aria-hidden="true"></i>
+              <h3>Abra o endereço</h3>
+              <p>No computador, tablet ou outro celular da mesma rede, acesse o endereço exibido no app, algo como <code>https://192.168.0.42:9240</code>. Na primeira vez, o app guia a instalação do certificado local.</p>
+            </li>
+            <li class="step" data-step-trigger="3">
+              <i class="ph ph-hand-tap step__ic" aria-hidden="true"></i>
+              <h3>Veja e controle</h3>
+              <p>A tela aparece em tempo real. Ative o controle e use o mouse como o seu dedo, com os botões voltar, início e recentes à mão.</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTROL: split text + film -->
+    <section class="control" id="control" data-section="Controle">
+      <div class="wrap control__grid">
+        <div class="control__copy">
+          <h2 class="h2" data-reveal>O mouse faz o papel do <em>seu dedo</em></h2>
+          <p class="lead" data-reveal>
+            Com o controle ativado, cada clique vira um toque no Android. O ponto tocado continua certo mesmo em tela cheia.
+          </p>
+          <ul class="feats" data-stagger>
+            <li><i class="ph ph-hand-pointing"></i>Toque, arraste e pressão longa</li>
+            <li><i class="ph ph-squares-four"></i>Voltar, início e recentes</li>
+            <li><i class="ph ph-corners-out"></i>Tela cheia sem desalinhar</li>
+            <li><i class="ph ph-arrows-clockwise"></i>Reconexão automática</li>
+          </ul>
+          <p class="footnote" data-reveal>O controle usa o serviço de acessibilidade do Android, que você ativa e revoga quando quiser. Para só assistir, ele não é necessário.</p>
+        </div>
+        <figure class="vframe" data-vframe data-tilt>
+          <video class="vid" muted loop playsinline preload="none"
+            data-src="videos/s2-control.mp4" poster="videos/s2-control-poster.webp"
+            aria-label="Demonstração do controle remoto pelo navegador"></video>
+          <span class="vframe__edge" aria-hidden="true"></span>
+        </figure>
+      </div>
+    </section>
+
+    <!-- FILES: stacked, wide film with clip reveal, three inline points -->
+    <section class="files" id="files" data-section="Arquivos">
+      <span class="bgicon bgicon--right bgicon--high" data-bgicon="clipboard-text" aria-hidden="true"></span>
+      <div class="wrap">
+        <div class="files__head">
+          <h2 class="h2" data-reveal>Clipboard e arquivos <em>sem cabo</em></h2>
+          <p class="lead" data-reveal>O texto que você copia no computador aparece no Android, e vice-versa. Para mandar um arquivo ao celular, basta enviá-lo pelo navegador.</p>
+        </div>
+      </div>
+      <div class="files__film" data-clip>
+        <video class="vid" muted loop playsinline preload="none"
+          data-src="videos/s4-files.mp4" poster="videos/s4-files-poster.webp"
+          aria-label="Demonstração da aba Arquivos e da sincronização de clipboard"></video>
+      </div>
+      <div class="wrap">
+        <div class="files__points" data-stagger>
+          <div><i class="ph ph-clipboard-text"></i><h3>Clipboard nos dois sentidos</h3><p>O que você copia de um lado fica disponível do outro.</p></div>
+          <div><i class="ph ph-folder-open"></i><h3>Aba Arquivos</h3><p>Navegue pelo armazenamento com trilha de pastas e busca.</p></div>
+          <div><i class="ph ph-upload-simple"></i><h3>Upload pelo navegador</h3><p>Envie arquivos do computador para o Android sem cabo.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARQUEE (single on page): compatibility strip, reacts to scroll velocity -->
+    <section class="marquee" aria-label="Compatibilidade">
+      <div class="marquee__row" data-marquee>
+        <div class="marquee__set">
+          <span>Android 10+</span><i></i><span>Chrome</span><i></i><span>Edge</span><i></i><span>Firefox</span><i></i><span>Safari</span><i></i><span>Vídeo H.264</span><i></i><span>HTTPS local</span><i></i><span>Sem root</span><i></i><span>Sem cabo</span><i></i>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECURITY: bento, exact 5 cells -->
+    <section class="security" id="security" data-section="Privacidade">
+      <span class="bgicon bgicon--left" data-bgicon="shield-check" aria-hidden="true"></span>
+      <div class="wrap">
+        <header class="sechead" data-reveal>
+          <span class="eyebrow">Privacidade</span>
+          <h2 class="h2">Nada sai da <em>sua rede</em></h2>
+          <p class="lead">O xSharect não tem servidor próprio. Vídeo e comandos vão do celular direto para o navegador, dentro da sua LAN.</p>
+        </header>
+
+        <div class="bento">
+          <article class="card card--video" data-spot data-reveal>
+            <figure class="vframe vframe--flat">
+              <video class="vid" muted loop playsinline preload="none"
+                data-src="videos/s3-connect.mp4" poster="videos/s3-connect-poster.webp"
+                aria-label="Demonstração da conexão com senha"></video>
+            </figure>
+            <div class="card__body">
+              <h3>Conexão direta</h3>
+              <p>Abra o endereço no navegador e digite a senha, caso tenha definido uma.</p>
+            </div>
+          </article>
+          <article class="card card--warm" data-spot data-reveal>
+            <i class="ph ph-lock-key card__ic" aria-hidden="true"></i>
+            <h3>HTTPS local</h3>
+            <p>Conexão cifrada com uma autoridade certificadora própria de cada aparelho. Você confere a impressão digital antes de confiar.</p>
+          </article>
+          <article class="card" data-spot data-reveal>
+            <i class="ph ph-password card__ic" aria-hidden="true"></i>
+            <h3>Senha opcional</h3>
+            <p>Defina uma senha para a sessão. Em uma rede só sua, dá para dispensar.</p>
+          </article>
+          <article class="card card--pattern" data-spot data-reveal>
+            <i class="ph ph-wifi-high card__ic" aria-hidden="true"></i>
+            <h3>Só na sua LAN</h3>
+            <p>Vídeo e comandos trafegam entre aparelhos da mesma rede.</p>
+          </article>
+          <article class="card card--wide" data-spot data-reveal>
+            <i class="ph ph-shield-check card__ic" aria-hidden="true"></i>
+            <div>
+              <h3>Assistir sem liberar o controle</h3>
+              <p>O controle remoto tem um interruptor no próprio app. Desligado, o navegador só mostra a tela.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq" data-section="Dúvidas">
+      <div class="wrap faq__grid">
+        <h2 class="h2 faq__title" data-reveal>Perguntas <em>frequentes</em></h2>
+        <div class="faq__list">
+          <details class="qa" data-reveal>
+            <summary>É gratuito mesmo?<span class="qa__ic"></span></summary>
+            <div class="qa__a"><p>Sim. O xSharect é gratuito: sem versão paga, sem período de teste e sem cadastro.</p></div>
+          </details>
+          <details class="qa" data-reveal>
+            <summary>Funciona pela internet, fora de casa?<span class="qa__ic"></span></summary>
+            <div class="qa__a"><p>Não. O Android e o navegador precisam estar na mesma rede Wi-Fi ou LAN, porque a conexão não passa por nenhum servidor externo.</p></div>
+          </details>
+          <details class="qa" data-reveal>
+            <summary>Preciso de root ou de cabo USB?<span class="qa__ic"></span></summary>
+            <div class="qa__a"><p>Não. Basta instalar o app no Android 10 ou superior. Nada de root, cabo, ADB ou programa no computador.</p></div>
+          </details>
+          <details class="qa" data-reveal>
+            <summary>Por que o app pede acessibilidade?<span class="qa__ic"></span></summary>
+            <div class="qa__a"><p>O serviço de acessibilidade do Android é o que transforma cliques do navegador em toques. Ele só é necessário para o controle remoto e pode ser revogado quando você quiser.</p></div>
+          </details>
+          <details class="qa" data-reveal>
+            <summary>Por que instalar um certificado no computador?<span class="qa__ic"></span></summary>
+            <div class="qa__a"><p>A conexão é HTTPS, mas acontece dentro da sua rede, sem domínio público. Cada aparelho gera a própria autoridade certificadora. Ao instalá-la uma vez, o navegador passa a confiar na conexão, e o app mostra a impressão digital para você conferir.</p></div>
+          </details>
+          <details class="qa" data-reveal>
+            <summary>Por que o download é um APK?<span class="qa__ic"></span></summary>
+            <div class="qa__a"><p>Hoje o xSharect é distribuído como APK assinado. Na instalação, o Android pede para autorizar o navegador a instalar apps desconhecidos, como acontece com qualquer APK.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- DOWNLOAD -->
+    <section class="download" id="download" data-section="Baixar">
+      <canvas class="download__shader" data-shader aria-hidden="true"></canvas>
+      <div class="grain" aria-hidden="true"></div>
+      <div class="wrap download__inner">
+        <span class="eyebrow" data-reveal>Download</span>
+        <h2 class="download__title" data-reveal>Instale no Android e abra no <em>navegador</em></h2>
+        <div class="download__cta" data-reveal>
+          <a class="btn btn--accent btn--xl" href="https://luingry.github.io/xsharect-landpage/#download" data-download data-magnetic>
+            <i class="ph ph-android-logo" aria-hidden="true"></i>
+            <span>Baixar APK</span>
+            <span class="btn__meta" data-version aria-live="polite"><span class="skel"></span></span>
+          </a>
+          <p class="download__proof">APK oficial assinado para Android 10+</p>
+          <p class="download__err" data-release-error hidden role="status">Não foi possível confirmar a versão mais recente agora. O botão leva à página oficial de download.</p>
+        </div>
+        <ol class="download__steps" data-stagger>
+          <li><span>1</span>Baixe o APK no Android</li>
+          <li><span>2</span>Abra o arquivo e confirme a instalação</li>
+          <li><span>3</span>Toque em Transmitir e autorize a captura</li>
+          <li><span>4</span>Ative a acessibilidade para controlar</li>
+        </ol>
+        <details class="notes" data-notes hidden>
+          <summary>Novidades desta versão<span class="qa__ic"></span></summary>
+          <div class="notes__a"><div class="notes__body" data-notes-body></div></div>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <a class="brand" href="#top">
+        <img class="logo" src="brand/mark.png" width="28" height="28" alt="" />
+        <span>xSharect</span>
+      </a>
+      <p>Espelhamento e controle do Android pela rede local.</p>
+      <p class="footer__small">© <span data-year></span> xSharect. Android é marca da Google LLC.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
 </html>

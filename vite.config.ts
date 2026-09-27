@@ -1,18 +1,6 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import { defineConfig } from "vite";
 
 export default defineConfig({
-  plugins: [react()],
-  base: '/xsharect-landpage/',
-  build: {
-    outDir: 'dist',
-    sourcemap: false,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          motion: ['framer-motion'],
-        },
-      },
-    },
-  },
+  base: "./",
+  build: { outDir: "dist", sourcemap: false, assetsInlineLimit: 0 },
 });

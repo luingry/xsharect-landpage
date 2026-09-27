@@ -1,5 +1,4 @@
-node_modules/
-dist/
-*.local
-*.apk
-!public/apk/*.apk
+node_modules
+dist
+.vercel
+*.log
